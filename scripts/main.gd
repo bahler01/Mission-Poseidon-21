@@ -279,7 +279,7 @@ Commands:
   speed/sp <value>
   sonar <active/a|passive/p|directed/d|off> [angle]
   drill <angle>
-  inventory
+  inventory/inv
   attack/a <angle_degrees>
   dock
   undock
