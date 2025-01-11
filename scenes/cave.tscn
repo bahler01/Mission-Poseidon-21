@@ -1,0 +1,2301 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpmpfwnph5fsu"]
+
+[ext_resource type="Script" path="res://scripts/quarz.gd" id="3_simka"]
+[ext_resource type="Script" path="res://scripts/phosphat.gd" id="4_wkij4"]
+[ext_resource type="Script" path="res://scripts/OreResource.gd" id="5_1dyc7"]
+[ext_resource type="Script" path="res://scripts/submarine_door.gd" id="6_wlm6c"]
+[ext_resource type="Script" path="res://scripts/LevelCompleteOre.gd" id="7_yfj86"]
+
+[node name="Cave" type="StaticBody2D" groups=["Environment", "RockGroup"]]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(87, -33)
+
+[node name="MainCave" type="CollisionPolygon2D" parent="." groups=["Environment"]]
+light_mask = 5
+visibility_layer = 5
+z_as_relative = false
+position = Vector2(6, 40)
+polygon = PackedVector2Array(55, -20, 93, 66, 92, 84, 100, 93, 102, 112, 70, 112, 53, 112, 52, 101, 43, 101, 32, 97, 26, 101, 25, 111, 13, 114, 15, 125, 19, 128, 33, 127, 24, 133, 35, 147, 35, 153, 30, 154, 18, 159, 19, 161, 27, 161, 36, 158, 37, 160, 41, 165, 55, 164, 48, 171, 40, 172, 27, 174, 14, 169, 3, 157, -9, 157, -18, 165, -32, 167, -51, 166, -51, 176, -63, 176, -60, 187, -78, 176, -72, 199, -80, 201, -86, 196, -95, 200, -111, 199, -113, 192, -109, 184, -118, 167, -109, 155, -110, 147, -120, 137, -119, 132, -123, 127, -133, 123, -144, 115, -153, 117, -166, 124, -191, 124, -191, 150, -190, 158, -205, 154, -197, 166, -208, 163, -209, 171, -216, 167, -218, 163, -219, 170, -227, 174, -231, 182, -242, 183, -236, 188, -236, 195, -231, 197, -237, 203, -227, 203, -229, 213, -232, 225, -226, 227, -223, 242, -216, 239, -211, 238, -211, 249, -212, 260, -218, 268, -214, 271, -216, 277, -210, 284, -218, 286, -204, 290, -205, 302, -206, 311, -201, 314, -202, 320, -193, 323, -188, 332, -183, 342, -174, 341, -170, 348, -168, 384, -180, 403, -167, 401, -165, 406, -166, 411, -162, 412, -155, 410, -150, 413, -146, 414, -147, 410, -146, 407, -142, 410, -141, 416, -143, 423, -141, 426, -137, 426, -132, 427, -128, 425, -128, 418, -127, 415, -124, 415, -119, 419, -115, 420, -109, 418, -109, 413, -113, 408, -109, 393, -104, 388, -96, 388, -91, 379, -86, 368, -90, 358, -86, 350, -85, 344, -61.834, 324.241, -49, 323, -58, 339, -48, 344, -41, 340, -34, 345, -24, 340, -16, 332, -2, 333, -2, 325, 6, 323, 14, 321, 17, 314, 24, 314, 32, 319, 26, 327, 19, 330, 22, 350, 28, 358, 38, 357, 48, 351, 51, 338, 65, 337, 74, 325, 87, 330, 93, 326, 103, 326, 102, 341, 118, 367, 134, 383, 140, 391, 156, 402, 160, 411, 152, 419, 153, 425, 142, 430, 143, 437, 135, 442, 135, 449, 127, 454, 125, 460, 117, 460, 117, 471, 106, 465, 90, 470, 77, 467, 69, 456, 58, 463, 43, 461, 33, 472, 28.7339, 472.711, 27, 469, 21, 467, 13, 468, 9, 471, 9, 477, 10, 481, -1, 482, -2, 487, 3, 489, 7, 490, 8.64735, 492.097, 5, 492, 3, 500, 11, 503, 16.1515, 501.647, 18, 504, 23, 507, 19, 509, 27, 517, 29, 515, 39, 525, 53, 528, 59, 519, 74, 515, 76, 534, 69, 548, 90, 541, 99, 530, 113, 528, 116, 540, 116, 553, 124, 563, 144, 569, 160, 574, 164, 565, 174, 561, 184, 567, 202, 567, 205, 553, 219, 562, 229, 559, 241, 565, 260, 554, 266, 547, 276, 547, 297, 518, 304, 497, 317, 491, 331, 502, 351, 566, 374, 577, 376, 567, 381, 552, 397, 564, 414, 573, 421, 581, 418, 594, 432, 616, 463, 616, 482, 588, 498, 577, 516, 576, 535, 588, 548, 589, 548, 616, 551, 616, 553, 590, 567, 590, 574, 609, 575, 612, 582, 616, 581, 609, 579, 606, 573, 587, 575, 574, 587, 572, 609, 595, 611, 591, 591, 567, 591, 553, 603, 551, 628, 577, 631, 574, 606, 546, 606, 531, 640, 519, 638, 515, 604, 525, 587, 519, 576, 508, 588, 490, 592, 473, 581, 463, 589, 453, 598, 450, 602, 442, 610, 432, 608, 419, 610, 395, 619, 409, 626, 427, 636, 434, 634, 462, 648, 447, 646, 468, 659, 454, 662, 474, 670, 464, 673, 478, 680, 459, 684, 476, 693, 466, 692, 480, 709, 497, 714, 484, 728, 495, 744, 503, 758, 497, 770, 512, 784, 513, 785, 533, 794, 534, 802, 543, 795, 564, 812, 548, 812, 558, 819, 561, 815, 570, 825, 575, 833, 591, 841, 586, 840, 605, 830, 615, 827, 621, 831, 625, 843, 630, 853, 628, 861, 626, 864, 628, 867, 628, 884, 626, 888, 623, 895, 624, 878, 645, 879, 656, 879, 658, 888, 658, 891, 662, 897, 656, 911, 638, 915, 648, 913, 660, 930, 676, 947, 674, 947, 692, 953, 705, 957, 718, 949, 731, 960, 735, 960, 747, 969, 755, 966, 768, 975, 776, 971, 792, 956, 815, 955, 831, 962, 843, 956, 860, 945, 871, 948, 888, 930, 898, 931, 909, 940, 919, 939, 937, 966, 962, 926, 960, 913, 960, 903, 981, 893, 1004, 901, 1010, 913, 1012, 916, 1023, 910, 1037, 905, 1041, 922, 1064, 895, 1052, 889, 1062, 890, 1083, 900, 1098, 899, 1112, 904, 1126, 916, 1126, 927, 1136, 927, 1148, 981, 1096, 973, 1157, 981, 1171, 1006, 1167, 1017, 1181, 1039, 1182, 1044, 1190, 1054, 1187, 1058, 1179, 1063, 1186, 1070, 1185, 1075, 1175, 1078, 1175, 1088, 1177, 1094, 1188, 1102, 1190, 1115, 1183, 1121, 1179, 1133, 1180, 1134, 1188, 1141, 1182, 1157, 1189, 1164, 1184, 1175, 1183, 1178, 1175, 1185, 1169, 1194, 1174, 1200, 1185, 1211, 1188, 1216, 1179, 1226, 1184, 1233, 1182, 1247, 1170, 1259, 1185, 1258, 1162, 1273, 1167, 1285, 1156, 1273, 1112, 1301, 1142, 1337, 1127, 1291, 1069, 1360, 1094, 1367, 1069, 1374, 1029, 1363, 1025, 1338, 1014, 1364, 1002, 1392, 965, 1356, 967, 1325, 943, 1363, 930, 1341, 924, 1320, 894, 1320, 849, 1283, 850, 1219, 869, 1227, 819, 1202, 792, 1170, 802, 1137, 769, 1101, 787, 1090, 746, 1057, 756, 1039, 751, 1030, 730, 1037, 728, 1040, 725, 1046, 726, 1051, 722, 1052, 718, 1058, 714, 1064, 716, 1067, 714, 1072, 707, 1082, 703, 1087, 692, 1081, 687, 1076, 687, 1072, 685, 1068, 682, 1063, 686, 1060, 689, 1054, 690, 1048, 691, 1043, 694, 1036, 694, 1033, 702, 1024, 693, 1011, 694, 1001, 676, 1008, 659, 1008, 640, 1025, 625, 1015, 623, 1017, 606, 1008, 592, 997, 593, 989, 599, 989, 581, 977, 582, 966, 575, 948, 563, 939, 535, 921, 524, 903, 527, 888, 530, 878, 515, 871, 525, 855, 514, 830, 501, 816, 487, 799, 482, 784, 470, 794, 451, 768, 451, 756, 432, 724, 418, 706, 416, 694, 398, 688, 385, 670, 372, 694, 349, 737, 367, 759, 382, 782, 375, 805, 372, 814, 390, 845, 409, 867, 433, 897, 460, 918, 451, 948, 430, 974, 443, 987, 433, 990, 401, 1007, 394, 1009, 371, 1012, 334, 1027, 313, 1053, 326, 1060, 310, 1083, 315, 1095, 323, 1097, 308, 1098, 297, 1107, 286, 1122, 298, 1148, 295, 1157, 307, 1171, 308, 1181, 295, 1193, 295, 1206, 305, 1220, 291, 1254, 286, 1273, 298, 1285, 287, 1317, 292, 1333, 294, 1352, 286, 1354, 267, 1339, 266, 1337, 246, 1385, 241, 1420, 211, 1466, 210, 1488, 198, 1510, 205, 1515, 202, 1494, 189, 1526, 140, 1550, 144, 1548, 139, 1524.9, 132.087, 1520, 97, 1558, 69, 1566, 43, 1530, 17, 1509, -29, 1476, -53, 1466, -72, 1435, -69, 1400, -79, 1356, -116, 1334, -99, 1310.96, -111.85, 1310, -142, 1317, -163, 1306, -180, 1258, -179, 1241, -192, 1224, -191, 1219, -179, 1202, -174, 1192, -183, 1173, -176, 1161, -188, 1150, -182, 1137, -190, 1106, -189, 1099, -174, 1084, -175, 1072, -184, 1063, -174, 1054, -178, 1042, -175, 1027, -175, 1017, -179, 1001, -185, 995, -172, 981, -166, 967, -174, 959, -175, 949, -176, 940, -193, 921, -182, 900, -197, 890, -216, 814, -215, 816, -270, 786, -271, 768, -300, 744, -295, 723, -299, 692, -299, 663, -311, 638, -282, 605.341, -279.829, 596, -252, 615, -225, 623, -201, 608, -192, 605, -177, 619, -160, 631, -160, 622, -143, 629, -124, 626, -109, 616, -107, 604, -96, 596, -123, 568, -143, 557, -152, 554, -169, 549, -194, 535, -211, 510, -239, 485, -240, 468, -281, 456, -245, 425, -278, 424, -247, 386, -260, 383, -226, 377, -198, 380, -172, 364, -156, 359, -132, 340.885, -111.992, 330, -105, 320, -111, 309, -110, 297, -117, 277, -117, 265, -114, 253, -116, 238, -121, 223, -126, 213, -125, 210, -117, 200, -112, 193, -107, 205, -81, 185, -58, 206, -47, 225, -52, 230, -51, 237, -48, 244, -58, 253.456, -58.0772, 263, -49, 276, -48, 288, -38, 300, -39, 310.926, -30.8902, 284, 42, 289, 58, 298, 73, 310, 68, 247, 249, 231, 266, 237, 291, 236, 320, 225, 332, 227, 343, 215, 367, 207.713, 370.34, 200, 386, 186, 373, 178, 357, 175, 345, 164, 331, 142, 313, 136, 307, 126, 294, 114, 294, 106, 278, 111, 270, 115, 250, 130, 255, 157, 278, 159, 276, 133, 250, 132, 243, 131, 234, 161, 258, 172, 265, 181, 262, 194, 265, 195, 254, 184, 243, 196, 231, 203, 227, 195, 208, 208, 210, 218, 199, 215, 218, 228, 209, 232, 194, 223, 182, 241.072, 174.344, 246, 162, 252.089, 150.473, 252, 141, 243, 133, 262, 129, 254, 126, 250, 113, 242, 107, 232, 106, 243, 99, 233, 94, 239, 81, 224, 85, 226, 79, 220, 82, 208, 87, 195, 80, 180, 76, 179, 88, 169, 98, 159, 92, 144, 77, 138, 89, 128, 76, 125, 92, 120, 105, 117, 91, 109, 87, 93, 66, 61, -25, 119, -65, 181, -319, 754, -432, 1230, -289, 1423, -171, 1658, 25, 1645, 185, 1539, 551, 1416, 781, 1677, 877, 1587, 1296, 1292, 1413, 1073, 1408, 903, 1293, 772, 1091, 741, 863, -184, 633, -311, 95)
+
+[node name="Island" type="CollisionPolygon2D" parent="." groups=["Environment"]]
+position = Vector2(1293, 73)
+polygon = PackedVector2Array(-11, -42, -42, -51, -54, -31, -82, -42, -90, -23, -121, -9, -112, 2, -71, 14, -113, 13, -131, 24, -127, 49, -84, 58, -62, 60, -61, 77, -78, 97, -37, 107, -7, 94, 24, 116, 55, 72, 14, 41, 58, 45, 63, 21, 92, -4, 56, -17, 29, -42, 13, -52)
+
+[node name="Island2" type="CollisionPolygon2D" parent="." groups=["Environment"]]
+polygon = PackedVector2Array(1243, -84, 1246, -66, 1236, -56, 1245.79, -38.4858, 1228, -44, 1207, -29, 1198, -37, 1185, -32, 1166, -40, 1161, -32, 1150, -29, 1134, -36, 1130, -23, 1123, -14, 1097, -31, 1097, -26, 1119, -9, 1106, 29, 1078, 29, 1079, 33, 1103, 35, 1094, 58, 1077, 67, 1078, 75, 1049, 86, 1052, 89, 1079, 82, 1080, 91, 1089, 110, 1088, 121, 1069, 130, 1070, 134, 1089, 127, 1086, 138, 1095, 141, 1101, 172, 1111, 188, 1090, 216, 1093, 219, 1116, 192, 1126, 202, 1131, 222, 1135, 232, 1129, 250, 1132, 253, 1144, 235, 1150, 229, 1169, 233, 1179, 224, 1207, 232, 1261.3, 214.918, 1276, 217, 1268, 247, 1264, 259, 1248, 266, 1218, 264, 1200, 249, 1181, 264, 1153, 268, 1116, 263, 1088, 283, 1072, 268, 1066, 285, 1057, 277, 1034, 287, 1034, 274, 1015, 280, 1006, 286, 925, 293, 900, 250, 885, 242, 892, 233, 888, 224, 874, 216, 873, 205, 858, 191, 878, 192, 882, 181, 888, 186, 902, 191, 913, 181, 925, 183, 930, 175, 950, 156, 967, 152, 991, 157, 1006, 156, 1013, 152, 1021, 145, 1018, 138, 1019, 122, 1039, 111, 1038, 108, 1017, 116, 1010, 108, 1016, 90, 1012, 90, 1005, 107, 998, 109, 986, 103, 978, 100, 972, 105, 955, 79, 935, 73, 908, 59, 877, 43, 889, 28, 884, 14, 899, -10, 898, -31, 911, -46, 908, -63, 943, -72, 956, -57, 970, -66, 981, -67, 984, -79, 1010, -69, 1033, -73, 1035, -85, 1058, -71, 1085, -66, 1081, -77, 1092, -86, 1104, -78, 1123, -66, 1139, -68, 1144, -86, 1167, -71, 1189, -81, 1214, -73, 1235, -86)
+
+[node name="Island3" type="CollisionPolygon2D" parent="." groups=["Environment"]]
+position = Vector2(-333, 19)
+polygon = PackedVector2Array(185, 274, 167, 272, 155, 273, 157, 280, 161, 283, 160, 291, 164, 292, 167, 291, 171, 288, 174, 292, 179, 291, 179, 281, 186, 291, 189, 298, 181, 305, 175, 303, 169, 311, 173, 314, 169, 316, 168, 320, 185, 332, 178, 321, 185, 321, 189, 310, 195, 325, 198, 319, 204, 323, 213, 318, 218, 324, 224, 321, 227, 318, 227, 315, 208, 312, 201, 300, 208, 293, 227, 293, 243, 300, 257, 303, 266, 320, 291, 318, 303, 323, 317, 321, 322, 307, 335, 319, 337, 312, 343, 312, 345, 304, 357, 306, 358, 300, 355, 293, 361, 279, 357, 269, 349, 270, 338, 261, 328, 263, 334, 270, 329, 293, 319, 276, 317, 266, 294, 265, 290, 298, 285, 272, 279, 276, 270, 292, 273, 269, 267, 264, 246, 252, 238, 255, 233, 247, 223, 251, 215, 257, 212, 252, 206, 250, 204, 244, 197, 248, 186, 254, 188, 242, 178, 237, 184, 230, 182, 224, 187, 221, 193, 217, 190, 215, 188, 206, 193, 199, 188, 192, 180, 193, 177, 199, 174, 206, 167, 203, 157, 206, 152, 216, 149, 219, 142, 222, 149, 237, 162, 247, 163, 256, 174, 265, 180, 265)
+
+[node name="Island4" type="CollisionPolygon2D" parent="." groups=["Environment"]]
+position = Vector2(275, 175)
+polygon = PackedVector2Array(198, 178, 204, 189, 188, 191, 183, 191, 172, 182, 173, 188, 166, 194, 154, 193, 151, 180, 146, 186, 143, 187, 133, 178, 129, 181, 123, 180, 118, 173, 114, 179, 107, 178, 107, 168, 103, 173, 98, 172, 89, 161, 81, 163, 74, 157, 64, 165, 60, 174, 55, 190, 44, 204, 38, 216, 23, 224, 10, 222, 3, 242, 11, 247, 9, 255, 18, 261, 24, 262, 30, 272, 38, 280, 52, 284, 86, 299, 116.788, 304.568, 114, 293, 114, 280, 108, 271, 88, 267, 79, 274, 68, 264, 59, 249, 55, 228, 63, 220, 59, 210, 73, 196, 85, 200, 96, 192, 116, 212, 111, 223, 117, 235, 131, 232, 147, 237, 162, 231, 172, 250, 206, 248, 206, 252, 173, 256, 163, 260, 167, 265, 159, 269, 167, 271, 168, 278, 161, 280, 160, 288, 166, 291, 163, 298, 168, 303, 159, 303, 157.538, 317.504, 171, 317, 178, 324, 198, 327, 217, 323, 230, 332, 246, 328, 257, 339, 269, 337, 259, 332, 270, 328, 267, 315, 263, 307, 243, 294, 263, 300, 271, 296, 281, 289, 278, 280, 289, 270, 280, 266, 269, 257, 259, 260, 253, 248, 267, 237, 276, 245, 280, 228, 287, 236, 294, 226, 278, 190, 276, 201, 266, 204, 266, 196, 260, 190, 251, 200, 248, 191, 239, 186, 232, 192, 225, 205, 214, 190)
+
+[node name="Island5" type="CollisionPolygon2D" parent="." groups=["Environment"]]
+position = Vector2(480, -136)
+polygon = PackedVector2Array(195, 203, 198, 213, 205, 223, 210, 238, 199, 248, 200, 260, 191, 272, 200, 292, 211, 297, 209, 307, 215, 320, 215, 338, 209, 334, 199, 332, 192, 344, 184, 349, 188, 365, 197, 380, 198, 391, 206, 402, 195, 415, 193, 438, 224, 448, 237, 445, 231, 429, 224, 417, 230, 393, 233, 383, 219, 374, 220, 371, 234, 379, 234, 365, 226, 353, 232, 345, 234, 339, 242, 328, 241, 320, 240, 309, 243, 300, 240, 273, 227, 246, 229, 222, 238, 205, 231, 211, 222, 207, 209, 211)
+
+[node name="Island6" type="CollisionPolygon2D" parent="." groups=["Environment"]]
+position = Vector2(190, -103)
+polygon = PackedVector2Array(199, 246, 188, 211, 177, 205, 161, 211, 165, 226, 151, 252, 149, 274, 151, 310, 164, 326, 176, 305, 164, 298, 161, 285, 168, 274, 183, 275, 196, 289, 204, 323, 221, 314, 240, 262, 231, 259, 214, 277)
+
+[node name="QuarzGroup" type="Node2D" parent="."]
+
+[node name="Quarz" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(177, 287)
+rotation = -0.223162
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz2" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(174, 289)
+rotation = -0.843652
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz2"]
+position = Vector2(-4.69401, 2.08975)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -13.6831, -0.827759, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz3" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(174, 289)
+rotation = -0.843652
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz3"]
+position = Vector2(2.55633, 15.5841)
+rotation = 1.27706
+scale = Vector2(0.825972, 0.825972)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 8.17609, -1.43317, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz15" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(939, 704)
+rotation = 0.20227
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz15"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz16" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(936, 706)
+rotation = -0.41822
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz16"]
+position = Vector2(-4.69401, 2.08975)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -13.6831, -0.827759, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz17" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(936, 706)
+rotation = -0.41822
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz17"]
+position = Vector2(2.55633, 15.5841)
+rotation = 1.27706
+scale = Vector2(0.825972, 0.825972)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 8.17609, -1.43317, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz12" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(918, 170)
+rotation = -0.223162
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz12"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz13" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(915, 172)
+rotation = -0.843652
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz13"]
+position = Vector2(-4.69401, 2.08975)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -13.6831, -0.827759, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz14" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(915, 172)
+rotation = -0.843652
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz14"]
+position = Vector2(2.55633, 15.5841)
+rotation = 1.27706
+scale = Vector2(0.825972, 0.825972)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 8.17609, -1.43317, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz18" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(679, 189)
+rotation = -0.223162
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz18"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz19" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(676, 191)
+rotation = -0.843652
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz19"]
+position = Vector2(-4.69401, 2.08975)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -13.6831, -0.827759, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz20" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(676, 191)
+rotation = -0.843652
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz20"]
+position = Vector2(2.55633, 15.5841)
+rotation = 1.27706
+scale = Vector2(0.825972, 0.825972)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 8.17609, -1.43317, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz9" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-138, 258)
+rotation = 0.560343
+scale = Vector2(0.685761, 0.661065)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz9"]
+position = Vector2(-0.920425, 4.1707)
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz10" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-140, 259)
+rotation = -0.0601464
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz10"]
+position = Vector2(-4.69401, 2.08975)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -13.6831, -0.827759, -6, -19, -2, -28, 5.76208, -20.4887, 0.245224, -9.08246, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz11" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-141, 260)
+rotation = -0.0601464
+scale = Vector2(0.619074, 0.596779)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz11"]
+position = Vector2(1.12691, 8.46382)
+rotation = 1.27706
+scale = Vector2(0.825972, 0.825972)
+polygon = PackedVector2Array(-6, 22, -7.44177, 9.41452, -5.99998, 6.05739, -9.63739, -26.4546, -7.4502, -38.1526, 1.92972, -28.4601, 8.17609, -1.43317, 4.2402, 6.04385, 5.93539, 9.77216, 5, 22)
+
+[node name="Quarz4" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-146, 435)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz4"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz5" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-139, 442)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz5"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz6" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-126, 447)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz6"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz7" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-110, 448)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz7"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz8" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(-155, 440)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz8"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz21" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(809, 409)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz21"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz22" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(816, 416)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz22"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz23" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(829, 421)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz23"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz24" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(841, 433)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz24"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz25" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(800, 414)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz25"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz26" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1257, 323)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz26"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz27" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1264, 330)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz27"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz28" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1276, 328)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz28"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz29" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1288, 340)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz29"]
+position = Vector2(7.41058, -14.4045)
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz30" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1248, 328)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz30"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz31" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1309, 315)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz31"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz32" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1316, 322)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz32"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz33" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1329, 327)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz33"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz34" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1341, 339)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz34"]
+position = Vector2(9.51312, -15.6355)
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz35" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1300, 320)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz35"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz36" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1037, 1205)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz36"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz37" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1044, 1212)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz37"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz38" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1056, 1210)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz38"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz39" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1068, 1222)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz39"]
+position = Vector2(7.41058, -14.4045)
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz40" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1028, 1210)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz40"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz41" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1089, 1197)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz41"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz42" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1096, 1204)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz42"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz43" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1109, 1209)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz43"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz44" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1121, 1221)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz44"]
+position = Vector2(9.51312, -15.6355)
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz45" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1080, 1202)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz45"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz46" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1143, 1204)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz46"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz47" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1150, 1211)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz47"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz48" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1162, 1209)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz48"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz49" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1174, 1221)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz49"]
+position = Vector2(7.41058, -14.4045)
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz50" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1134, 1209)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz50"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz51" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1195, 1196)
+rotation = 0.247125
+scale = Vector2(0.762093, 0.734647)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz51"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz52" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1202, 1203)
+rotation = 0.576518
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz52"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz53" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1215, 1208)
+rotation = 0.211199
+scale = Vector2(0.903586, 0.871045)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz53"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz54" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1227, 1220)
+rotation = -0.271561
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz54"]
+position = Vector2(9.51312, -15.6355)
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="Quarz55" type="StaticBody2D" parent="QuarzGroup" groups=["QuarzGroup"]]
+position = Vector2(1186, 1201)
+rotation = -0.0955771
+scale = Vector2(0.585761, 0.564666)
+script = ExtResource("3_simka")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="QuarzGroup/Quarz55"]
+polygon = PackedVector2Array(-6, 22, -15.41, 8.93445, -9.71066, 7.48456, -5.99998, 6.05739, -6, -19, -2, -28, 3, -20, 4.2402, 6.04385, 8.49469, 10.3747, 8.03192, 18.6406, 5, 22)
+
+[node name="GreenPhosphatsGroup" type="Node2D" parent="."]
+
+[node name="GreenPhosphat" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(24, 516)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 5.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 2
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat"]
+polygon = PackedVector2Array(0, -9, -5, -8, -7, -6, -9, -4, -9, -2, -9, 1, -7, 4, -3, 5, 0, 4, 0, 6, 3, 7, 9, 7, 9, 3, 11, 0, 10, -2, 9, -7, 2, -9)
+
+[node name="GreenPhosphat13" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(1310, -134)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 5.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 2
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat13"]
+polygon = PackedVector2Array(0, -9, -5, -8, -7, -6, -9, -4, -9, -2, -9, 1, -7, 4, -3, 5, 0, 4, 0, 6, 3, 7, 9, 7, 9, 3, 11, 0, 10, -2, 9, -7, 2, -9)
+
+[node name="GreenPhosphat2" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(14, 529)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat2"]
+position = Vector2(-1, -5)
+polygon = PackedVector2Array(-5, -1, -8, -2, -9, 1, -7, 4, -4, 5, -1, 6, 3, 7, 9, 7, 11, 5, 12, 3, 11, 1, 9, -2, 4, -2, -1, -1)
+
+[node name="GreenPhosphat3" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(18, 539)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat3"]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(-7, -5, -8, -2, -9, 1, -7, 4, -4, 4, -1, 6, 1, 4, 6, 5, 9, 7, 10, 4, 11, 1, 9, -2, 8, -4, 4, -5, -4, -4)
+
+[node name="GreenPhosphat9" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(18, 539)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat9"]
+position = Vector2(11, 11)
+polygon = PackedVector2Array(1, 4, 4, 6, 6, 5, 9, 7, 8, 4, 10, 4, 11, 1, 7, 1, 9, -2, 8, -4, 4, -5, -4, -1)
+
+[node name="GreenPhosphat10" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(995, 156)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat10"]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(-7, -5, -8, -2, -9, 1, -7, 4, -4, 4, -1, 6, 1, 4, 6, 5, 9, 7, 10, 4, 11, 1, 9, -2, 8, -4, 4, -5, -4, -4)
+
+[node name="GreenPhosphat12" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(995, 156)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat12"]
+position = Vector2(233, -8)
+polygon = PackedVector2Array(-7, -5, -8, -2, -9, 1, -7, 4, -4, 4, -1, 6, 1, 4, 6, 5, 9, 7, 10, 4, 11, 1, 9, -2, 8, -4, 4, -5, -4, -4)
+
+[node name="GreenPhosphat11" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(999, 139)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat11"]
+position = Vector2(11, 11)
+polygon = PackedVector2Array(1, 4, 4, 6, 6, 5, 9, 7, 8, 4, 10, 4, 11, 1, 7, 1, 9, -2, 8, -4, 4, -5, -4, -1)
+
+[node name="GreenPhosphat4" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(842, 663)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat4"]
+position = Vector2(1, -3)
+polygon = PackedVector2Array(-7, -5, -8, -2, -9, 1, -7, 4, -4, 4, -1, 6, 1, 4, 6, 5, 9, 7, 9, 3, 9, -2, 4, -5, -4, -4)
+
+[node name="GreenPhosphat5" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(881, 661)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat5"]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(-7, -5, -8, -2, -10, 1, -11, 9, -7, 8, 0, 7, 4, 8, 6, 5, 9, 7, 12, 3, 9, -2, 4, -5, -4, -4)
+
+[node name="GreenPhosphat6" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(980, 622)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 1
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat6"]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(-7, -5, -8, -2, -10, 1, -11, 9, -7, 8, 0, 7, 4, 8, 6, 5, 9, 7, 12, 3, 9, -2, 4, -5, -4, -4)
+
+[node name="GreenPhosphat7" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(1021, 649)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 2
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat7"]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(-11, -11, -14, -6, -16, 1, -11, 9, -4, 12, 3, 13, 4, 8, 6, 5, 9, 7, 12, 3, 9, -2, 4, -8, -2, -15)
+
+[node name="GreenPhosphat8" type="StaticBody2D" parent="GreenPhosphatsGroup" groups=["Environment", "Phosphats"]]
+position = Vector2(980, 704)
+script = ExtResource("4_wkij4")
+ores = [{
+"drill_time": 3.0,
+"ore_type": "Green Phosphat",
+"yield_amount": 3
+}]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GreenPhosphatsGroup/GreenPhosphat8"]
+position = Vector2(342, 199)
+polygon = PackedVector2Array(-23, -13, -24, -6, -28, 9, -20, 16, -12, 21, 3, 13, 9, 7, 12, 3, 24, -14, 10, -19, -5, -22)
+
+[node name="MagnetiteGroup" type="Node2D" parent="." groups=["Environment", "MagnetiteGroup"]]
+
+[node name="Magnetite12" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(900, 690)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite12"]
+position = Vector2(1, 1)
+scale = Vector2(0.674377, 0.674377)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite13" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(1082, 740)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite13"]
+position = Vector2(2, -1)
+scale = Vector2(0.84545, 0.84545)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(352, 442)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+yield_amount = 2
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite"]
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite2" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(339, 431)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+yield_amount = 2
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite2"]
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite6" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(362, 191)
+scale = Vector2(2.07379, 2.07379)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+yield_amount = 4
+drill_time = 12.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite6"]
+position = Vector2(2.89326, -0.48221)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite3" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(332, 418)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite3"]
+position = Vector2(1, 1)
+scale = Vector2(0.674377, 0.674377)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite7" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(218, -10)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+yield_amount = 2
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite7"]
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite8" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(199, -18)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+yield_amount = 2
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite8"]
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite9" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(203, -32)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite9"]
+position = Vector2(1, 1)
+scale = Vector2(0.674377, 0.674377)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite10" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(207, -50)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite10"]
+position = Vector2(1, 1)
+scale = Vector2(0.674377, 0.674377)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite11" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(202, -60)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite11"]
+position = Vector2(1, 1)
+scale = Vector2(0.674377, 0.674377)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite4" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(302, 110)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite4"]
+position = Vector2(1, 1)
+scale = Vector2(0.674377, 0.674377)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="Magnetite5" type="StaticBody2D" parent="MagnetiteGroup" groups=["Environment", "MagnetiteGroup"]]
+position = Vector2(888, 694)
+script = ExtResource("5_1dyc7")
+ore_type = "Magnetite"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MagnetiteGroup/Magnetite5"]
+position = Vector2(1, 1)
+scale = Vector2(0.674377, 0.674377)
+polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
+
+[node name="CrashedSubmarine" type="Node2D" parent="."]
+position = Vector2(452, 649)
+
+[node name="Submarine" type="StaticBody2D" parent="CrashedSubmarine" groups=["Environment", "RostedMetal"]]
+position = Vector2(0, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CrashedSubmarine/Submarine"]
+scale = Vector2(0.438046, 0.438046)
+polygon = PackedVector2Array(-21, 14, 23, 14, 26, 11, 28, 8, 28, -5, 26, -9, 22, -12, 11.4143, -11.4143, 11.4143, -15.98, 11.4143, -20.5458, -9.13147, -20.5458, -9, -15, -11.4143, -11.4143, -21, -12, -25, -9, -28, -5, -28, 8, -25, 12)
+
+[node name="SubmarineDoor" type="StaticBody2D" parent="CrashedSubmarine" groups=["Environment", "MissionItem"]]
+position = Vector2(1, -6)
+script = ExtResource("6_wlm6c")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CrashedSubmarine/SubmarineDoor"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-5, -2, -5, 1, 4, 1, 4, -2)
+
+[node name="IceGroup" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+
+[node name="Ice" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice"]
+polygon = PackedVector2Array(175, 138, 165, 132, 175, 148, 181, 165, 189, 134, 185, 128, 180, 133)
+
+[node name="Ice2" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="IceGroup/Ice2"]
+position = Vector2(-145, -3)
+polygon = PackedVector2Array(166, 146, 164, 154, 173, 157, 191, 163, 182, 152, 188, 147, 186, 139, 179, 142, 175, 139)
+
+[node name="Ice3" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(107, -171)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D27" type="CollisionPolygon2D" parent="IceGroup/Ice3"]
+position = Vector2(298, -51)
+polygon = PackedVector2Array(152, 131, 173, 128, 166, 152, 147, 148, 147, 156, 151, 161, 134, 164, 156, 173, 162, 179, 169, 175, 176, 179, 183, 173, 191, 193, 199, 173, 209, 177, 220, 262, 230, 173, 238, 171, 227, 154, 168, 116, 136, 122)
+
+[node name="Ice4" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="IceGroup/Ice4"]
+position = Vector2(75, 65)
+polygon = PackedVector2Array(142, 124, 164, 149, 147, 156, 151, 161, 156, 173, 148, 172, 158, 187, 199, 171, 209, 131, 180, 113, 170, 110, 172, 137)
+
+[node name="Ice5" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D18" type="CollisionPolygon2D" parent="IceGroup/Ice5"]
+position = Vector2(-157, 149)
+polygon = PackedVector2Array(165, 138, 159, 142, 167, 162, 190, 178, 181, 152, 187, 152, 205, 166, 194, 149, 226, 138, 187, 136)
+
+[node name="Ice76" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(296, -283)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D18" type="CollisionPolygon2D" parent="IceGroup/Ice76"]
+position = Vector2(-157, 149)
+polygon = PackedVector2Array(165, 138, 159, 142, 167, 162, 190, 178, 181, 152, 187, 152, 205, 166, 194, 149, 226, 138, 187, 136)
+
+[node name="Ice6" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="IceGroup/Ice6"]
+position = Vector2(-194, 54)
+polygon = PackedVector2Array(165, 138, 146, 143, 167, 162, 176, 179, 181, 152, 192, 160, 187, 136)
+
+[node name="Ice7" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D26" type="CollisionPolygon2D" parent="IceGroup/Ice7"]
+position = Vector2(116, -60)
+polygon = PackedVector2Array(166, 146, 164, 154, 173, 157, 191, 163, 182, 152, 188, 147, 186, 139, 179, 142, 175, 139)
+
+[node name="Ice8" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D29" type="CollisionPolygon2D" parent="IceGroup/Ice8"]
+position = Vector2(466, -368)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 192, 140, 201, 136, 201, 144, 202, 149, 197, 154, 203, 154, 209, 156, 213, 162, 215, 155, 221, 152, 211, 138, 223, 136, 226, 144, 233, 154, 240, 135, 248, 144, 248, 157, 255, 160, 250, 177, 260, 173, 278, 155, 295, 158, 303, 182, 360, 122, 242, 90, 150, 90, 139, 143, 142, 178, 148, 172, 150, 163, 150, 149, 154, 163, 155, 160, 160, 163, 156, 145, 161, 154, 159, 137, 165, 147, 174, 130, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice9" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D25" type="CollisionPolygon2D" parent="IceGroup/Ice9"]
+position = Vector2(247, -321)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 192, 140, 201, 136, 201, 144, 202, 149, 197, 154, 203, 154, 209, 156, 213, 162, 215, 155, 221, 152, 211, 138, 223, 136, 226, 144, 233, 154, 240, 135, 248, 144, 248, 157, 255, 160, 250, 177, 260, 173, 269, 173, 268, 162, 295, 127, 228, 88, 137, 94, 139, 143, 141, 155, 149, 147, 148, 160, 152, 150, 154, 163, 155, 160, 160, 163, 156, 145, 161, 154, 159, 137, 165, 147, 174, 130, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice10" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(-138, 157)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="IceGroup/Ice10"]
+position = Vector2(-191, -126)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 192, 140, 201, 136, 201, 144, 202, 149, 197, 154, 203, 154, 209, 156, 213, 162, 215, 155, 229, 161, 237, 148, 224, 121, 184, 117, 171, 117, 149, 129, 142, 158, 149, 152, 148, 160, 152, 157, 154, 163, 155, 160, 160, 163, 156, 157, 161, 154, 159, 148, 165, 147, 171, 140, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice55" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(569, 596)
+rotation = 2.42423
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="IceGroup/Ice55"]
+position = Vector2(-187.985, -148.077)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 189.845, 133.775, 184, 117, 171, 117, 149, 129, 137.929, 141.565, 136.341, 149.469, 142, 158, 149, 152, 148, 160, 152, 157, 154, 163, 155, 160, 160, 163, 156, 157, 161, 154, 159, 148, 165, 147, 171, 140, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice71" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(532, 620)
+rotation = 3.40002
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="IceGroup/Ice71"]
+position = Vector2(-190.253, -132.789)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 195.909, 138.534, 189.542, 134.011, 189.942, 127.699, 184, 117, 171, 117, 149, 129, 137.929, 141.565, 136.341, 149.469, 142, 158, 149, 152, 148, 160, 152, 157, 154, 163, 155, 160, 160, 163, 156, 157, 161, 154, 159, 148, 165, 147, 171, 140, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice74" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(62, 565)
+rotation = 3.40002
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="IceGroup/Ice74"]
+position = Vector2(-190.253, -132.789)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 195.909, 138.534, 189.542, 134.011, 189.942, 127.699, 184, 117, 171, 117, 149, 129, 137.929, 141.565, 136.341, 149.469, 142, 158, 149, 152, 148, 160, 152, 157, 154, 163, 155, 160, 160, 163, 156, 157, 161, 154, 159, 148, 165, 147, 171, 140, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice11" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D15" type="CollisionPolygon2D" parent="IceGroup/Ice11"]
+position = Vector2(-411, 79)
+polygon = PackedVector2Array(190, 160, 184, 134, 191, 138, 193, 146, 196, 139, 201, 141, 194, 126, 184, 117, 176, 125, 171, 127, 173, 136, 172, 144)
+
+[node name="Ice12" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D23" type="CollisionPolygon2D" parent="IceGroup/Ice12"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(147, 256)
+polygon = PackedVector2Array(184, 142, 182, 118, 170, 137, 167, 108, 160.874, 123.593, 156, 136, 137, 119, 138, 135, 134, 148, 165, 169)
+
+[node name="Ice13" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D22" type="CollisionPolygon2D" parent="IceGroup/Ice13"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(233, 212)
+polygon = PackedVector2Array(203, 168, 209, 149, 195, 152, 215, 129, 184, 142, 182, 118, 170, 137, 167, 108, 160.874, 123.593, 156, 136, 137, 119, 138, 135, 134, 148, 165, 169)
+
+[node name="Ice14" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D21" type="CollisionPolygon2D" parent="IceGroup/Ice14"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-42, 347)
+polygon = PackedVector2Array(167, 155, 181, 168, 182, 153, 193, 154, 193, 145, 207, 139, 194, 127, 185, 109, 134, 148, 151, 155)
+
+[node name="Ice15" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D33" type="CollisionPolygon2D" parent="IceGroup/Ice15"]
+position = Vector2(598, -167)
+scale = Vector2(1.66571, 1.53164)
+polygon = PackedVector2Array(200.515, 327.1, 204, 323, 211.321, 315.348, 216.124, 314.695, 218.526, 306.209, 228.131, 300.332, 234.735, 303.596, 243, 300, 233.534, 289.885, 234.735, 281.398, 229, 275, 213.723, 266.381, 200, 271, 195.712, 284.009, 181.904, 292.497)
+
+[node name="Ice16" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D28" type="CollisionPolygon2D" parent="IceGroup/Ice16"]
+position = Vector2(213, 85)
+polygon = PackedVector2Array(163, 120, 159, 136, 160, 144, 182, 147, 193, 130, 190, 113, 177, 124)
+
+[node name="Ice17" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="IceGroup/Ice17"]
+position = Vector2(45, -30)
+polygon = PackedVector2Array(172, 142, 171, 152, 181, 165, 196, 152, 211, 161, 207, 148)
+
+[node name="Ice18" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D30" type="CollisionPolygon2D" parent="IceGroup/Ice18"]
+position = Vector2(520, -48)
+polygon = PackedVector2Array(172, 142, 154, 132, 166, 147, 152, 152, 160, 158, 150, 162, 181, 165, 191, 167, 202, 172, 196, 153, 211, 161, 207, 148, 210, 133, 191, 131)
+
+[node name="Ice107" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D30" type="CollisionPolygon2D" parent="IceGroup/Ice107"]
+position = Vector2(962, 67)
+polygon = PackedVector2Array(172, 142, 154, 132, 166, 147, 152, 152, 160, 158, 150, 162, 181, 165, 191, 167, 202, 172, 196, 153, 211, 161, 207, 148, 210, 133, 191, 131)
+
+[node name="Ice110" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(18, 118)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D30" type="CollisionPolygon2D" parent="IceGroup/Ice110"]
+position = Vector2(962, 67)
+polygon = PackedVector2Array(172, 142, 154, 132, 166, 147, 152, 152, 160, 158, 150, 162, 181, 165, 191, 167, 202, 172, 196, 153, 211, 161, 207, 148, 210, 133, 191, 131)
+
+[node name="Ice19" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="IceGroup/Ice19"]
+position = Vector2(168, 223)
+polygon = PackedVector2Array(174, 136, 171, 152, 169, 156, 174, 163, 179, 157, 182, 165, 191, 154, 192, 162, 209, 170, 203, 155, 216, 163, 214, 151, 209, 137)
+
+[node name="Ice20" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="IceGroup/Ice20"]
+position = Vector2(-196, 25)
+polygon = PackedVector2Array(184, 148, 193, 142, 187, 137, 193, 129, 184, 125, 176, 122, 171, 127, 172, 133, 173, 145)
+
+[node name="Ice21" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D35" type="CollisionPolygon2D" parent="IceGroup/Ice21"]
+position = Vector2(377, 318)
+polygon = PackedVector2Array(171, 154, 174, 146, 193, 142, 187, 137, 193, 129, 185, 118, 176, 122, 166, 126, 159, 135, 159, 155)
+
+[node name="Ice60" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(46, 61)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D35" type="CollisionPolygon2D" parent="IceGroup/Ice60"]
+position = Vector2(377, 318)
+polygon = PackedVector2Array(186, 151, 188, 126, 171, 129, 167, 132, 163, 135, 164, 146, 170, 155)
+
+[node name="Ice22" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D24" type="CollisionPolygon2D" parent="IceGroup/Ice22"]
+position = Vector2(56, 182)
+polygon = PackedVector2Array(184, 148, 193, 129, 190, 123, 179, 116, 171, 127, 172, 133, 181, 136)
+
+[node name="Ice23" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D19" type="CollisionPolygon2D" parent="IceGroup/Ice23"]
+position = Vector2(-3, 252)
+polygon = PackedVector2Array(184, 148, 193, 129, 190, 123, 179, 116, 173, 98, 151, 95, 138, 99, 151, 104, 148, 112, 159, 116, 155, 122, 166, 134, 172, 133, 181, 136)
+
+[node name="Ice75" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(-31, 128)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D19" type="CollisionPolygon2D" parent="IceGroup/Ice75"]
+position = Vector2(-71, 385)
+rotation = -0.638005
+polygon = PackedVector2Array(184, 148, 193, 129, 190, 123, 179, 116, 173, 98, 151, 95, 138, 99, 151, 104, 148, 112, 159, 116, 155, 122, 166, 134, 172, 133, 181, 136)
+
+[node name="Ice24" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D20" type="CollisionPolygon2D" parent="IceGroup/Ice24"]
+position = Vector2(-42, 289)
+polygon = PackedVector2Array(183, 155, 201, 150, 197, 130, 191, 139, 186, 133, 188, 129, 183, 129, 183, 120, 175, 128, 179, 119, 170, 121, 173, 113, 167, 111, 169, 105, 165, 104, 163, 92, 145, 100, 138, 99, 137, 114, 148, 127, 159, 138)
+
+[node name="Ice25" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="IceGroup/Ice25"]
+position = Vector2(-248, 160)
+polygon = PackedVector2Array(184, 148, 193, 129, 184, 117, 176, 125, 171, 127, 172, 133, 181, 136)
+
+[node name="Ice26" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="IceGroup/Ice26"]
+position = Vector2(-245, 81)
+polygon = PackedVector2Array(184, 148, 186, 136, 198, 142, 184, 117, 176, 125, 171, 127, 173, 136, 178, 140)
+
+[node name="Ice27" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D31" type="CollisionPolygon2D" parent="IceGroup/Ice27"]
+position = Vector2(772, -37)
+polygon = PackedVector2Array(186, 172, 195, 156, 198, 142, 184, 117, 170, 115, 166, 126, 166, 148, 178, 140)
+
+[node name="Ice28" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D32" type="CollisionPolygon2D" parent="IceGroup/Ice28"]
+position = Vector2(728, -61)
+polygon = PackedVector2Array(184, 148, 186, 136, 198, 142, 184, 117, 170, 115, 166, 126, 166, 148, 178, 140)
+
+[node name="Ice106" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D32" type="CollisionPolygon2D" parent="IceGroup/Ice106"]
+position = Vector2(1052, -175)
+polygon = PackedVector2Array(185, 146, 186, 136, 204, 138, 184, 117, 170, 115, 166, 126, 159, 149, 175, 140)
+
+[node name="Ice98" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(458, -131)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D31" type="CollisionPolygon2D" parent="IceGroup/Ice98"]
+position = Vector2(772, -37)
+polygon = PackedVector2Array(186, 172, 195, 156, 198, 142, 184, 117, 170, 115, 166, 126, 166, 148, 178, 140)
+
+[node name="Ice105" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(458, -131)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D32" type="CollisionPolygon2D" parent="IceGroup/Ice105"]
+position = Vector2(728, -61)
+polygon = PackedVector2Array(184, 148, 186, 136, 198, 142, 184, 117, 170, 115, 166, 126, 166, 148, 178, 140)
+
+[node name="Ice29" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D14" type="CollisionPolygon2D" parent="IceGroup/Ice29"]
+position = Vector2(-259, 194)
+polygon = PackedVector2Array(184, 148, 186, 136, 201, 141, 184, 117, 176, 125, 171, 127, 173, 136, 178, 140)
+
+[node name="Ice30" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="IceGroup/Ice30"]
+position = Vector2(-337, 159)
+polygon = PackedVector2Array(198, 142, 184, 117, 170, 113, 165, 121, 171, 127, 173, 136, 178, 140)
+
+[node name="Ice31" type="StaticBody2D" parent="IceGroup" groups=["IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="IceGroup/Ice31"]
+position = Vector2(-286, 74)
+polygon = PackedVector2Array(184, 148, 186, 136, 198, 142, 184, 117, 176, 125, 171, 127, 173, 136, 178, 140)
+
+[node name="Ice32" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D16" type="CollisionPolygon2D" parent="IceGroup/Ice32"]
+position = Vector2(-397, 186)
+polygon = PackedVector2Array(184, 148, 186, 136, 198, 142, 184, 117, 176, 125, 171, 127, 173, 136, 178, 140)
+
+[node name="Ice33" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="IceGroup/Ice33"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-264, 270)
+polygon = PackedVector2Array(184, 148, 193, 157, 206, 146, 207, 127, 184, 117, 172, 117, 178, 134, 172, 139, 178, 146)
+
+[node name="Ice83" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(1088, -475)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="IceGroup/Ice83"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-264, 270)
+polygon = PackedVector2Array(184, 148, 193, 157, 206, 146, 207, 127, 184, 117, 172, 117, 178, 134, 172, 139, 178, 146)
+
+[node name="Ice84" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(1201, -551)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="IceGroup/Ice84"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-264, 270)
+polygon = PackedVector2Array(184, 148, 193, 157, 206, 146, 207, 127, 184, 117, 172, 117, 178, 134, 172, 139, 178, 146)
+
+[node name="Ice34" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D34" type="CollisionPolygon2D" parent="IceGroup/Ice34"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(572, 273)
+polygon = PackedVector2Array(193, 157, 216, 158, 220, 122, 207, 138, 195, 120, 182, 112, 182, 127, 166, 102, 160, 130, 166, 149)
+
+[node name="Ice109" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-248, -47)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D34" type="CollisionPolygon2D" parent="IceGroup/Ice109"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(572, 273)
+polygon = PackedVector2Array(193, 157, 216, 158, 220, 122, 207, 138, 195, 120, 182, 112, 182, 127, 166, 102, 160, 130, 166, 149)
+
+[node name="Ice82" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(898, -24)
+rotation = -1.02096
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D34" type="CollisionPolygon2D" parent="IceGroup/Ice82"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-190.843, -141.068)
+polygon = PackedVector2Array(193, 157, 216, 158, 220, 122, 207, 138, 195, 120, 182, 112, 182, 127, 166, 102, 160, 130, 166, 149)
+
+[node name="Ice35" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(501, 617)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice35"]
+polygon = PackedVector2Array(-1, -10, 29, 19, 35, 16, 12, -17, -34, -39)
+
+[node name="Ice38" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(501, 617)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice38"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(-7, -5, 2, 3, 3, -17, -12, -35, -24, -28)
+
+[node name="Ice58" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(571, 550)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice58"]
+polygon = PackedVector2Array(4, -8, 40, 13, 43, 2, 12, -17, -29, -23)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="IceGroup/Ice58"]
+position = Vector2(6, -18)
+polygon = PackedVector2Array(10, -8, 47, -17, 38, -26, 9, -17, -14, -7)
+
+[node name="Ice59" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(571, 550)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice59"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(8, -9, 13, -21, -12, -35, -19, -26)
+
+[node name="Ice41" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(508, 512)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice41"]
+polygon = PackedVector2Array(1.61798, -6.88342, 30.4519, 18.7798, 36.676, 5.27948, 12, -17, -25.135, -33.3651)
+
+[node name="Ice43" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(499, 499)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice43"]
+polygon = PackedVector2Array(10.5824, -6.0838, 11.4709, -16.0443, -18.4292, -29.755, -5.90607, -12.5745)
+
+[node name="Ice47" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(523, 505)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice47"]
+polygon = PackedVector2Array(1.61804, -6.88348, 20.7393, 3.85791, 14.8331, -8.71661, 1.77704, -19.9209, -18.4292, -29.755, -5.90607, -12.5745)
+
+[node name="Ice44" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(485, 500)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice44"]
+polygon = PackedVector2Array(0.622009, -6.97229, 20.9871, -10.1755, 7.82336, -31.4292, 0.762207, -31.0551, -4.7511, -25.523, -8.11334, -32.8507, -8.45007, -17.8212, -5.90607, -12.5745)
+
+[node name="Ice42" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(508, 512)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice42"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(-0.890625, -6.99207, 7.14789, -18.3227, -12, -35, -21.382, -24.8834)
+
+[node name="Ice61" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(454, 505)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice61"]
+polygon = PackedVector2Array(1.61798, -6.88342, 24.6533, 16.2546, 34.5951, 6.09781, 12, -17, -25.135, -33.3651)
+
+[node name="Ice62" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(454, 505)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice62"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(-5.69315, -9.42847, 4, -18, -12, -35, -21.382, -24.8834)
+
+[node name="Ice65" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(380, 491)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice65"]
+polygon = PackedVector2Array(1.61798, -6.88342, 21.1134, 10.919, 28.8853, 2.57657, 12, -17, -25.135, -33.3651)
+
+[node name="Ice66" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(380, 491)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice66"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(-5.69315, -9.42847, 4, -18, -12, -35, -21.382, -24.8834)
+
+[node name="Ice45" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(527, 524)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice45"]
+position = Vector2(-2.81044, -2.25863)
+polygon = PackedVector2Array(-3.8252, -13.3929, 34.6138, 17.1431, 37.5832, 6.36432, 28.3336, -2.49249, 1.86584, -20.917, -25.135, -33.3651, -17.2367, -20.613)
+
+[node name="Ice46" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(527, 524)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice46"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(-10.1403, -15.8489, 7.43317, -10.2655, 8.14392, -18.2339, -3.00897, -28.2644, -23.9446, -41.1756, -29.6357, -33.6515)
+
+[node name="Ice57" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(549, 516)
+rotation = -1.65976
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice57"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(-12.3101, -14.0345, -6.42267, -12.5054, 0.442139, -21.9327, 0.42334, -32.9781, -7.18958, -37.673, -21.0454, -39.913, -22.5745, -34.0255, -29.5281, -23.6021, -19.3011, -25.7018, -12.3288, -25.0798)
+
+[node name="Ice36" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(417, 627)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice36"]
+polygon = PackedVector2Array(2, -35, -1, -69, -7, -60, -13, -37, -15, -12, -2, -9)
+
+[node name="Ice64" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(432, 529)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice64"]
+position = Vector2(11, -3)
+polygon = PackedVector2Array(9, -36, 6, -69, 5, -78, -8, -79, -14, -77, -10, -68, -6, -58, -14, -56, -10, -48, -18, -44, -9, -38, -9, -34)
+
+[node name="Ice77" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(375, -82)
+rotation = -2.46041
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice77"]
+polygon = PackedVector2Array(10.5824, -6.0838, 11.4709, -16.0443, -18.4292, -29.755, -5.90607, -12.5745)
+
+[node name="Ice78" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(361, -81)
+rotation = -2.46041
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice78"]
+polygon = PackedVector2Array(0.622009, -6.97229, 20.9871, -10.1755, 7.82336, -31.4292, 0.762207, -31.0551, -4.7511, -25.523, -8.11334, -32.8507, -8.45007, -17.8212, -5.90607, -12.5745)
+
+[node name="Ice79" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(330, -76)
+rotation = -2.46041
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice79"]
+polygon = PackedVector2Array(1.61798, -6.88342, 24.6533, 16.2546, 34.5951, 6.09781, 12, -17, -25.135, -33.3651)
+
+[node name="Ice80" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(330, -76)
+rotation = -2.46041
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice80"]
+position = Vector2(23, 18)
+polygon = PackedVector2Array(-5.69315, -9.42847, 4, -18, -12, -35, -21.382, -24.8834)
+
+[node name="Ice81" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(324, -29)
+rotation = -1.24968
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice81"]
+position = Vector2(36.0475, 3.81772)
+polygon = PackedVector2Array(9, -36, 6, -69, 5, -78, -8, -79, -14, -77, -10, -68, -6, -58, -14, -56, -10, -48, -18, -44, -9, -38, -9, -34)
+
+[node name="Ice39" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(417, 627)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice39"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(-2, -31, 2, -46, -6, -50, -12, -40)
+
+[node name="Ice53" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(423, 614)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice53"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(-4, -33, 2, -50, 3, -61, -12, -37, -22, -20, -25, -5, -13, -2)
+
+[node name="Ice56" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(433, 619)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice56"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(-4, -33, 12, -53, 13, -68, -14, -30, -20, 2)
+
+[node name="Ice54" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(423, 614)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice54"]
+position = Vector2(4, 24)
+polygon = PackedVector2Array(-4, -33, 3, -61, -12, -37, -26, -14, -14, -13)
+
+[node name="Ice49" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(422, 653)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice49"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(-2, -31, -1, -69, -12, -40)
+
+[node name="Ice51" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(432, 643)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice51"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(-12, -38, -1, -42, 5, -48, 9, -56, -8, -52, -12, -49)
+
+[node name="Ice52" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(453, 641)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice52"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(-11, -38, -1, -42, 6, -39, 31, -25, 35, -32, 12, -45, 11, -53, -7, -53, -12, -53, -16, -45)
+
+[node name="Ice50" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(472, 651)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice50"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(-2, -31, 9, -47, 4, -48, -10, -57, -14, -48, -2, -42, -9, -41)
+
+[node name="Ice48" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(492, 641)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice48"]
+position = Vector2(12, 24)
+polygon = PackedVector2Array(6, -47, -13, -61, -5, -47, -11, -44, -19, -47, -10, -36, -3, -29, 5, -31, 11, -39)
+
+[node name="Ice40" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(417, 627)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice40"]
+position = Vector2(-13, 8)
+polygon = PackedVector2Array(-2, -31, -10, -62, -13, -39, -17, -17, -6, -14)
+
+[node name="Ice63" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(395, 643)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice63"]
+position = Vector2(-13, 8)
+polygon = PackedVector2Array(-2, -31, 1, -47, -10, -62, -13, -39, -13, -22, -3, -20)
+
+[node name="Ice67" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(371, 621)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice67"]
+position = Vector2(-13, 8)
+polygon = PackedVector2Array(-4, -28, 3, -44, -5, -49, -10, -65, -25, -34, -21, -21)
+
+[node name="Ice68" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(359, 589)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice68"]
+position = Vector2(-13, 8)
+polygon = PackedVector2Array(-10, -23, 8, -35, -1, -45, -12, -64, -28, -30)
+
+[node name="Ice37" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(417, 627)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice37"]
+position = Vector2(-4, 20)
+polygon = PackedVector2Array(4, -34, 5, -55, -8, -58, -11, -43)
+
+[node name="Ice85" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(1586, 132)
+rotation = 1.23218
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="IceGroup/Ice85"]
+position = Vector2(-235.721, -125.426)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 189.845, 133.775, 184, 117, 171, 117, 149, 129, 137.929, 141.565, 136.341, 149.469, 142, 158, 149, 152, 148, 160, 152, 157, 154, 163, 155, 160, 160, 163, 156, 157, 161, 154, 159, 148, 165, 147, 171, 140, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice108" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(1505, 48)
+rotation = 1.23218
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="IceGroup/Ice108"]
+position = Vector2(-235.721, -125.426)
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 189.845, 133.775, 184, 117, 171, 117, 149, 129, 137.929, 141.565, 136.341, 149.469, 142, 158, 149, 152, 148, 160, 152, 157, 154, 163, 155, 160, 160, 163, 156, 157, 161, 154, 159, 148, 165, 147, 171, 140, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice86" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+position = Vector2(1549, 156)
+rotation = 2.20796
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+yield_amount = 0
+drill_time = 2.0
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="IceGroup/Ice86"]
+position = Vector2(-24.8088, -188.161)
+rotation = 0.370552
+polygon = PackedVector2Array(184, 148, 188, 146, 192, 149, 195.909, 138.534, 189.542, 134.011, 189.942, 127.699, 184, 117, 171, 117, 149, 129, 137.929, 141.565, 136.341, 149.469, 142, 158, 149, 152, 148, 160, 152, 157, 154, 163, 155, 160, 160, 163, 156, 157, 161, 154, 159, 148, 165, 147, 171, 140, 170, 147, 173, 149, 172, 156, 176, 151, 177, 147, 184, 138, 183, 144)
+
+[node name="Ice87" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1518, 153)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice87"]
+position = Vector2(35.4301, 21.4175)
+polygon = PackedVector2Array(-1, -10, 29, 19, 35, 16, 12, -17, -34, -39)
+
+[node name="Ice88" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1518, 153)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice88"]
+position = Vector2(60.8388, 39.2891)
+polygon = PackedVector2Array(-7, -5, 2, 3, 3, -17, -12, -35, -24, -28)
+
+[node name="Ice89" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1588, 86)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice89"]
+position = Vector2(4.3337, -68.5589)
+polygon = PackedVector2Array(4, -8, 40, 13, 43, 2, 12, -17, -29, -23)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="IceGroup/Ice89"]
+position = Vector2(10.3337, -86.5589)
+polygon = PackedVector2Array(10, -8, 47, -17, 38, -26, 9, -17, -14, -7)
+
+[node name="Ice90" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1588, 86)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice90"]
+position = Vector2(27.3337, -50.5589)
+polygon = PackedVector2Array(8, -9, 13, -21, -12, -35, -19, -26)
+
+[node name="Ice91" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1434, 163)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice91"]
+position = Vector2(18.6116, -129.026)
+rotation = -3.03005
+polygon = PackedVector2Array(2, -35, -1, -69, -7, -60, -13, -37, -15, -12, -2, -9)
+
+[node name="Ice92" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1434, 163)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice92"]
+position = Vector2(-10.8744, -46.2575)
+polygon = PackedVector2Array(-2, -31, 2, -46, -6, -50, -12, -40)
+
+[node name="Ice93" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1440, 150)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice93"]
+position = Vector2(-65.8832, 83.261)
+polygon = PackedVector2Array(-4, -33, 2, -50, 3, -61, -12, -37, -22, -20, -25, -5, -13, -2)
+
+[node name="Ice94" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1450, 155)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice94"]
+position = Vector2(-65.7877, -76.0657)
+polygon = PackedVector2Array(-4, -33, 12, -53, 13, -68, -14, -30, -20, 2)
+
+[node name="Ice95" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1440, 150)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice95"]
+position = Vector2(-53.8235, 89.2246)
+polygon = PackedVector2Array(-4, -33, 3, -61, -12, -37, -26, -14, -14, -13)
+
+[node name="Ice96" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1439, 189)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice96"]
+position = Vector2(-49.1589, 76.6055)
+polygon = PackedVector2Array(-2, -31, -1, -69, -12, -40)
+
+[node name="Ice97" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1449, 179)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice97"]
+position = Vector2(-11.2157, -63.3421)
+polygon = PackedVector2Array(-12, -38, -1, -42, 5, -48, 9, -56, -8, -52, -12, -49)
+
+[node name="Ice99" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1489, 187)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice99"]
+position = Vector2(38.312, 71.9318)
+polygon = PackedVector2Array(-2, -31, 9, -47, 4, -48, -10, -57, -14, -48, -2, -42, -9, -41)
+
+[node name="Ice100" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1509, 177)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice100"]
+position = Vector2(38.9094, 49.0923)
+polygon = PackedVector2Array(6, -47, -13, -61, -5, -47, -11, -44, -19, -47, -10, -36, -3, -29, 5, -31, 11, -39)
+
+[node name="Ice101" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1434, 163)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice101"]
+position = Vector2(19.6629, 117.023)
+polygon = PackedVector2Array(-2, -31, -10, -62, -13, -39, -17, -17, -6, -14)
+
+[node name="Ice102" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1412, 179)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice102"]
+position = Vector2(40.2269, 144.357)
+polygon = PackedVector2Array(-2, -31, 1, -47, -10, -62, -13, -39, -13, -22, -3, -20)
+
+[node name="Ice103" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1388, 157)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice103"]
+position = Vector2(-20.9527, -17.4923)
+polygon = PackedVector2Array(-4, -28, 3, -44, -5, -49, -10, -65, -25, -34, -21, -21)
+
+[node name="Ice104" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1434, 163)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice104"]
+position = Vector2(6.93113, -139.445)
+rotation = 2.84882
+polygon = PackedVector2Array(4, -34, 5, -55, -8, -58, -11, -43)
+
+[node name="Ice72" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(120, 599)
+rotation = 0.415143
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice72"]
+polygon = PackedVector2Array(2, -35, -1, -69, -7, -60, -13, -37, -15, -12, -2, -9)
+
+[node name="Ice73" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(120, 599)
+rotation = 0.415143
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice73"]
+position = Vector2(-4, 20)
+polygon = PackedVector2Array(4, -34, 5, -55, -8, -58, -11, -43)
+
+[node name="Ice69" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(442, 456)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice69"]
+polygon = PackedVector2Array(4, -36, 12, -47, -1, -69, -7, -60, -7, -49, -13, -37, -4, -34)
+
+[node name="Ice70" type="StaticBody2D" parent="IceGroup" groups=["Environment", "IceGroup"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(442, 456)
+script = ExtResource("5_1dyc7")
+ore_type = "Ice"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IceGroup/Ice70"]
+position = Vector2(2, 30)
+polygon = PackedVector2Array(4, -34, 9, -41, 13, -49, 5, -55, -13, -53, -6, -41)
+
+[node name="CorralsGroup" type="Node2D" parent="."]
+
+[node name="Corrals" type="StaticBody2D" parent="CorralsGroup" groups=["CorralsGroup", "Environment"]]
+position = Vector2(165, 593)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CorralsGroup/Corrals"]
+polygon = PackedVector2Array(0, -30, -6, -25, -6, -12, -15, -24, -20, -21, -17, -3, -23, 1, -34, -17, -41, -15, -53, 0, -65, 20, -28, 35, 18, 64, 85, 56, 103, 29, 121, 5, 130, -17, 133, -28, 130, -33, 122, -30, 120, -25, 112.62, -29.4137, 105, -43, 96, -41, 99.2451, -28.5778, 90, -28, 86, -35, 83, -30, 83.0641, -18.5419, 79, -13, 74, -37, 68, -37, 69, -15, 59, -32, 56, -41, 51, -40, 48, -21, 37, -37, 31, -35, 30, -13, 24, -20, 19, -36, 13, -30, 14, -12)
+
+[node name="Corrals2" type="StaticBody2D" parent="CorralsGroup" groups=["CorralsGroup", "Environment"]]
+position = Vector2(165, 593)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CorralsGroup/Corrals2"]
+position = Vector2(773, 0)
+rotation = -2.45804
+polygon = PackedVector2Array(0, -30, -6, -25, -6, -12, -15, -24, -20, -21, -17, -3, -28, 35, 1.32922, 133.053, 20.7125, 117.265, 48.5883, 143.569, 56.4847, 135.847, 41.7588, 113.019, 65.9325, 126.862, 73.8297, 119.139, 69.0084, 103.72, 71.5656, 92.6087, 80.2074, 98.467, 85.5782, 87.6432, 79.5499, 77.0766, 80.4747, 73.5784, 93.5315, 86.3242, 96.0012, 83.0226, 82.0508, 67.6167, 83.0262, 63.9268, 103.323, 80.9277, 105.393, 67.6342, 96.6947, 55.3727, 104.648, 54.0532, 114.897, 65.0516, 124.601, 67.465, 138.383, 71.7166, 133.274, 59.1111, 154.921, 69.8529, 134.743, 30.8289, 146.085, 24.1693, 121, 5, 130, -17, 133, -28, 130, -33, 123.898, -29.9857, 120, -25, 110.662, -25.6515, 110.605, -32.0544, 100.901, -34.4678, 94.4977, -34.4118, 89.0139, -36.3938, 85.7124, -38.8636, 77.7588, -37.5441, 77.9591, -32.5481, 75.6331, -30.6534, 74, -37, 68, -37, 64.8657, -29.6214, 59, -32, 56, -41, 51, -40, 48, -21, 37, -37, 31, -35, 29.2314, -14.7825, 24, -20, 19, -36, 13, -30, 13.5245, -7.14734)
+
+[node name="LevelCompleteOre" type="Node2D" parent="."]
+visible = false
+position = Vector2(94, -20)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelCompleteOre" groups=["MissionItem"]]
+position = Vector2(117, 192)
+script = ExtResource("7_yfj86")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelCompleteOre/StaticBody2D"]
+position = Vector2(-592, -81)
+polygon = PackedVector2Array(10, 15, 27, 0, 29, -6, 25, -10, 18, -12, 11, -9, 5, 0)
+
+[node name="RhodiumGroup" type="Node2D" parent="."]
+
+[node name="Rhodium" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(556, 657)
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium"]
+polygon = PackedVector2Array(-1, -9, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium2" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(587, 656)
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium2"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium8" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(1573, 193)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium8"]
+position = Vector2(0.967146, -21.9104)
+polygon = PackedVector2Array(-1, -9, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium10" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(1335, 127)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium10"]
+position = Vector2(0.967146, -21.9104)
+polygon = PackedVector2Array(-1, -9, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium9" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(1604, 192)
+rotation = -1.19205
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium9"]
+position = Vector2(-80.2935, -63.8353)
+polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium3" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(617, 636)
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium3"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium4" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(634, 617)
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium4"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium5" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(646, 562)
+script = ExtResource("5_1dyc7")
+drill_time = 6.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium5"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium6" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(158, 315)
+script = ExtResource("5_1dyc7")
+yield_amount = 2
+drill_time = 12.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium6"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -7, 4, 3, 11, 12, 9, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium7" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(691, 229)
+script = ExtResource("5_1dyc7")
+yield_amount = 2
+drill_time = 12.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium7"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -7, 4, 3, 11, 12, 9, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="Rhodium11" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
+position = Vector2(1271, 1180)
+script = ExtResource("5_1dyc7")
+yield_amount = 3
+drill_time = 16.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium11"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(-1, -9, -5, -10, -15, -8, -12, 0, -8, 20, 4, 25, 19, 11, 7, -1, 7, -3, 3, -7, 0, -9)
+
+[node name="PlatinumGroup" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(482, 423)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+drill_time = 7.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1041, 109)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+yield_amount = 2
+drill_time = 14.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D2"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1099, -28)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+yield_amount = 2
+drill_time = 14.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D4"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D4"]
+position = Vector2(116, 111)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1080, 27)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+drill_time = 7.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D5"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1055, 86)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+yield_amount = 2
+drill_time = 14.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D6"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1070, 131)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+drill_time = 7.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D7"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1098, 208)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+yield_amount = 3
+drill_time = 20.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D8"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-5, -5, -12, -2, -11, 3, -9, 12, 3, 11, 6, -3)
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1130, 250)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+drill_time = 7.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D9"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(1017, 87)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+yield_amount = 2
+drill_time = 14.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D3"]
+position = Vector2(3, 0)
+polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
+position = Vector2(21, 200)
+script = ExtResource("5_1dyc7")
+ore_type = "Platinum"
+yield_amount = 2
+drill_time = 14.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D10"]
+position = Vector2(5, 1)
+polygon = PackedVector2Array(-4, -3, -9, -1, -5, 5, 0, 7, 6, -3, 4, -4)

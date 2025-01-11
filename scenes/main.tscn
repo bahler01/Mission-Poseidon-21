@@ -1,0 +1,401 @@
+[gd_scene load_steps=33 format=3 uid="uid://bifw50xmc528f"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_forrp"]
+[ext_resource type="PackedScene" uid="uid://bqyq6whb68hhk" path="res://scenes/player.tscn" id="1_wgvpj"]
+[ext_resource type="PackedScene" uid="uid://cc1fomjf362h5" path="res://addons/flowerwall_postprocess/scenes/flowerwall_pp.tscn" id="3_gbckr"]
+[ext_resource type="PackedScene" uid="uid://cpmpfwnph5fsu" path="res://scenes/cave.tscn" id="3_rfrus"]
+[ext_resource type="Script" path="res://scripts/sonar.gd" id="5_b1blx"]
+[ext_resource type="AudioStream" uid="uid://cmkmmsuyt2vho" path="res://sounds/ImpactSound1.wav" id="5_rtocj"]
+[ext_resource type="Texture2D" uid="uid://m720k6518vq1" path="res://picture/1x/Zeichenfläche 1sd.png" id="5_xrt5d"]
+[ext_resource type="AudioStream" uid="uid://vjp2kd3dxwmo" path="res://sounds/ImpactSound2.wav" id="6_sk2dv"]
+[ext_resource type="AudioStream" uid="uid://p2coueb1t400" path="res://sounds/FrictionSound1wav.wav" id="7_lo2po"]
+[ext_resource type="Script" path="res://scripts/command_input.gd" id="7_oi3oc"]
+[ext_resource type="Script" path="res://scripts/drill.gd" id="8_h25q6"]
+[ext_resource type="AudioStream" uid="uid://bjkgk1g82vb6x" path="res://sounds/Ping1_mixdown.wav" id="8_urape"]
+[ext_resource type="Shader" path="res://scenes/hole.gdshader" id="9_3p5ox"]
+[ext_resource type="AudioStream" uid="uid://b34jiar2xpin3" path="res://sounds/Ping2_mixdown.wav" id="9_i54bv"]
+[ext_resource type="FontFile" uid="uid://j0g3dp7avdaf" path="res://fonts/Perfect DOS VGA 437 Win.ttf" id="12_fockm"]
+[ext_resource type="Shader" path="res://shaders/VHSandCRT.gdshader" id="12_kibyw"]
+[ext_resource type="Texture2D" uid="uid://be00qku4pty3y" path="res://picture/SonarOverlayShuttle.png" id="13_db5qr"]
+[ext_resource type="AudioStream" uid="uid://dvio54rjnhhns" path="res://sounds/ExplosionSound.wav" id="13_ngtyo"]
+[ext_resource type="PackedScene" uid="uid://b65uiji86li2i" path="res://scenes/BigShark.tscn" id="14_7hfrc"]
+[ext_resource type="PackedScene" uid="uid://dybdle6hhssci" path="res://scenes/shark.tscn" id="18_jmg1q"]
+[ext_resource type="PackedScene" uid="uid://3hls3b4kxljt" path="res://scenes/station.tscn" id="19_g2g8f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kvig"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0n54p"]
+shader = ExtResource("9_3p5ox")
+shader_parameter/hole_radius = 0.425
+shader_parameter/hole_center = Vector2(0.5, 0.5)
+shader_parameter/panel_color = Color(0, 0, 0, 1)
+shader_parameter/smoothness = 0.002
+shader_parameter/edge_color = Color(0, 1, 0.4, 1)
+shader_parameter/edge_thickness = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xycjo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r25g"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.811837, 0.811837, 0.811837, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xdbpf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drjnv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dldbn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpmg6"]
+shader = ExtResource("12_kibyw")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.061
+shader_parameter/scanlines_width = 0.4
+shader_parameter/grille_opacity = 0.061
+shader_parameter/resolution = Vector2(600, 100)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 4.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 2.085
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 0.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.7
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/vignette_opacity = 0.101
+
+[sub_resource type="Curve2D" id="Curve2D_qgvqb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 250.476, 63, 0, 0, 0, 0, 228.825, 50, 0, 0, 0, 0, 197.333, 44, 0, 0, 0, 0, 186.508, 58, 0, 0, 0, 0, 202.254, 86, 0, 0, 0, 0, 205.206, 138, 0, 0, 0, 0, 255.396, 152, 0, 0, 0, 0, 269.174, 135, 0, 0, 0, 0, 284.92, 119, 0, 0, 0, 0, 286.888, 98, 0, 0, 0, 0, 264.73, 78)
+}
+point_count = 11
+
+[sub_resource type="Curve2D" id="Curve2D_adgp0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 245.047, 4, 0, 0, 0, 0, 233.238, 23, 0, 0, 0, 0, 219.46, 40, 0, 0, 0, 0, 211.587, 80, 0, 0, 0, 0, 230.286, 105, 0, 0, 0, 0, 262.762, 103, 0, 0, 0, 0, 289.333, 82, 0, 0, 0, 0, 271.619, 57, 0, 0, 0, 0, 266.698, 15)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_exg05"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 144.667, 85, 0, 0, 0, 0, 251.936, 85, 0, 0, 0, 0, 386.762, 87)
+}
+point_count = 3
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_forrp")
+
+[node name="flowerwall_pp" parent="." instance=ExtResource("3_gbckr")]
+
+[node name="Cave" parent="." instance=ExtResource("3_rfrus")]
+position = Vector2(86, -29)
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_wgvpj")]
+light_mask = 5
+visibility_layer = 5
+z_as_relative = false
+position = Vector2(170, 134)
+scale = Vector2(1, 1)
+motion_mode = 1
+impact_sound_1 = ExtResource("5_rtocj")
+impact_sound_2 = ExtResource("6_sk2dv")
+friction_sound = ExtResource("7_lo2po")
+
+[node name="Zeichenfläche1Sd" type="Sprite2D" parent="Player"]
+position = Vector2(1, -0.5)
+scale = Vector2(0.175, 0.185938)
+texture = ExtResource("5_xrt5d")
+
+[node name="BlackBackgroundPanel" type="Panel" parent="Player"]
+z_index = -3
+z_as_relative = false
+offset_left = -122.0
+offset_top = -133.0
+offset_right = 140.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7kvig")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+z_index = 2
+texture_filter = 1
+position = Vector2(70, 1)
+scale = Vector2(2, 2)
+zoom = Vector2(2, 2)
+
+[node name="Drill" type="Node2D" parent="Player"]
+script = ExtResource("8_h25q6")
+
+[node name="Sonar" type="Node2D" parent="Player"]
+script = ExtResource("5_b1blx")
+sonar_ping_sound_active = ExtResource("8_urape")
+sonar_ping_sound_directed = ExtResource("9_i54bv")
+explosion_sound = ExtResource("13_ngtyo")
+
+[node name="Hole" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_0n54p")
+custom_minimum_size = Vector2(270, 270)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -134.0
+offset_right = 135.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="Control" parent="Player"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 70.9998
+offset_top = 0.999908
+offset_right = 111.0
+offset_bottom = 40.9999
+
+[node name="BlackBackRight" type="Panel" parent="Player/UI"]
+layout_mode = 0
+offset_left = 59.0002
+offset_top = -135.0
+offset_right = 239.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7kvig")
+
+[node name="BlackBackLeft" type="Panel" parent="Player/UI"]
+layout_mode = 0
+offset_left = -241.0
+offset_top = -135.0
+offset_right = -200.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7kvig")
+
+[node name="DefaultSpeedLabel" type="Label" parent="Player/UI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -228.0
+offset_top = 114.0
+offset_right = -97.9998
+offset_bottom = 142.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("12_fockm")
+text = "Default Speed"
+
+[node name="PositionLabel" type="Label" parent="Player/UI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -225.0
+offset_top = -107.0
+offset_right = -94.9998
+offset_bottom = -78.9999
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("12_fockm")
+text = "Position"
+
+[node name="StatusLabel" type="Label" parent="Player/UI"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -227.0
+offset_top = 65.0001
+offset_right = -96.9998
+offset_bottom = 93.0001
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("12_fockm")
+text = "HP
+Speed"
+
+[node name="Rame" type="Control" parent="Player"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -170.0
+offset_top = -134.0
+offset_right = 790.0
+offset_bottom = 406.0
+scale = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/Rame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="Player/Rame/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xycjo")
+
+[node name="Terminal" type="PanelContainer" parent="Player"]
+visibility_layer = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 125.0
+offset_top = -115.0
+offset_right = 459.0
+offset_bottom = 339.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8r25g")
+
+[node name="Rows" type="VBoxContainer" parent="Player/Terminal"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="Player/Terminal/Rows"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xdbpf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/Terminal/Rows/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 5
+
+[node name="TerminalOutput" type="RichTextLabel" parent="Player/Terminal/Rows/PanelContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("12_fockm")
+bbcode_enabled = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="Player/Terminal/Rows"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_drjnv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/Terminal/Rows/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Player/Terminal/Rows/PanelContainer2/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_fonts/font = ExtResource("12_fockm")
+theme_override_font_sizes/font_size = 16
+text = " >"
+
+[node name="CommandInput" type="LineEdit" parent="Player/Terminal/Rows/PanelContainer2/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("12_fockm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dldbn")
+placeholder_text = "Command"
+max_length = 33
+flat = true
+caret_blink = true
+script = ExtResource("7_oi3oc")
+
+[node name="SonarOverlay" type="Sprite2D" parent="Player"]
+scale = Vector2(0.268286, 0.268286)
+texture = ExtResource("13_db5qr")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+material = SubResource("ShaderMaterial_xpmg6")
+custom_minimum_size = Vector2(200, 200)
+offset_left = -170.0
+offset_top = -134.0
+offset_right = 790.0
+offset_bottom = 406.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="SharkPath" type="Path2D" parent="."]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(310, -203)
+scale = Vector2(1.01613, 1)
+curve = SubResource("Curve2D_qgvqb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="SharkPath"]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(250.476, 63)
+rotation = -2.60085
+
+[node name="Shark" parent="SharkPath/PathFollow2D" instance=ExtResource("18_jmg1q")]
+
+[node name="SharkPath2" type="Path2D" parent="."]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(1269, 23)
+scale = Vector2(1.01613, 1)
+curve = SubResource("Curve2D_adgp0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="SharkPath2"]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(245.047, 4)
+rotation = 2.12689
+
+[node name="Shark" parent="SharkPath2/PathFollow2D" instance=ExtResource("18_jmg1q")]
+
+[node name="BigSharkPath" type="Path2D" parent="."]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(941, 962)
+scale = Vector2(1.01613, 1)
+curve = SubResource("Curve2D_exg05")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BigSharkPath"]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(144.667, 85)
+
+[node name="BigShark" parent="BigSharkPath/PathFollow2D" instance=ExtResource("14_7hfrc")]
+move_speed = 8.0
+detection_range = 140.0
+attack_range = 35.0
+attack_cooldown = 3.5
+bite_damage = 35
+stun_knockback_strength = 2.0
+
+[node name="StationStart" parent="." instance=ExtResource("19_g2g8f")]
+z_index = 2
+position = Vector2(170, 125)
+is_start_station = true
+
+[node name="StationEnd" parent="." instance=ExtResource("19_g2g8f")]
+z_index = 2
+position = Vector2(943, -203)
+is_end_station = true
+
+[node name="Zeichenfläche1Sd" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(639, 167)
+scale = Vector2(0.175, 0.185938)
+texture = ExtResource("5_xrt5d")
+
+[connection signal="gui_input" from="Player/Terminal/Rows/PanelContainer2/HBoxContainer/CommandInput" to="." method="_on_CommandInput_gui_input"]
+[connection signal="text_submitted" from="Player/Terminal/Rows/PanelContainer2/HBoxContainer/CommandInput" to="." method="_on_CommandInput_text_submitted"]

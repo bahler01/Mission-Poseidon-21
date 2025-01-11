@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://be4fl6kqri3j2"]
+
+[ext_resource type="Script" path="res://scripts/LevelComplete.gd" id="1_u0saj"]
+
+[node name="LevelComplete" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u0saj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -240.0
+offset_right = 240.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ButtonNextLevel" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "Next Level"
+
+[node name="ButtonRestartLevel" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "Restart Level"
+
+[node name="ButtonExitMenu" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "Exit to Menu"

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b65uiji86li2i"]
+
+[ext_resource type="Script" path="res://scripts/shark.gd" id="1_ccx8v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bkl25"]
+radius = 8.0
+
+[node name="BigShark" type="CharacterBody2D"]
+light_mask = 7
+visibility_layer = 7
+rotation = 1.57674
+scale = Vector2(1.705, 1.705)
+collision_layer = 5
+collision_mask = 5
+collision_priority = 3.0
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_ccx8v")
+max_hp = 250
+move_speed = 5.0
+stun_duration = 2.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bkl25")

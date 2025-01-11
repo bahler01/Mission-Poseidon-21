@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://be75r32tbfy25"]
+
+[ext_resource type="Script" path="res://scripts/torpedo.gd" id="1_40oia"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j8mo4"]
+
+[node name="Torpedo" type="Area2D"]
+light_mask = 3
+visibility_layer = 3
+z_as_relative = false
+script = ExtResource("1_40oia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(0.135, 0.15)
+shape = SubResource("CapsuleShape2D_j8mo4")

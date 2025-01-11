@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dybdle6hhssci"]
+
+[ext_resource type="Script" path="res://scripts/shark.gd" id="1_u3vxf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmsct"]
+radius = 1.0
+height = 8.0
+
+[node name="Shark" type="CharacterBody2D"]
+light_mask = 7
+visibility_layer = 7
+collision_layer = 5
+collision_mask = 5
+collision_priority = 3.0
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_u3vxf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 7
+visibility_layer = 7
+shape = SubResource("CapsuleShape2D_gmsct")

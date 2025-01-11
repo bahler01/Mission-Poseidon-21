@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5minjx0d3c8y"]
+
+[ext_resource type="Script" path="res://scripts/torpedo_ping.gd" id="1_t4bym"]
+
+[node name="TorpedoPing" type="Node2D"]
+z_index = 1
+script = ExtResource("1_t4bym")

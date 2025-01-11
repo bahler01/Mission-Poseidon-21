@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpnnea88fag0"]
+
+[ext_resource type="AudioStream" uid="uid://i6oafj7peyho" path="res://sounds/BackAmbient.mp3" id="1_66n5j"]
+
+[node name="BackAmbient" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_66n5j")
+volume_db = -1.502
+autoplay = true
+parameters/looping = true
