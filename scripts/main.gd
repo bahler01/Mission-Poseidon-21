@@ -1,7 +1,7 @@
 extends Node2D
 
 # -------------------------------------------------
-#          SUBMARINE MISSION CONTROLLER (v4.3)
+#          SUBMARINE MISSION CONTROLLER
 # -------------------------------------------------
 #  This script handles:
 #   • Narrative dialogues (3 phases):
@@ -186,9 +186,6 @@ func _process(delta: float) -> void:
 				# Done typing
 				is_typing = false
 				is_waiting_for_input = true
-				# Instead of [allow]/[deny], for the final dialogue we want the user to type "bye"
-				# But for the 1st and 2nd dialogues, do the old approach:
-				# We'll instruct them to press something, but let's unify the approach
 				if current_narrative_phase == "end_station":
 					add_to_terminal_output("\n[Type 'bye' to exit the game]", "#8888ff")
 				else:
@@ -251,7 +248,6 @@ func end_narrative() -> void:
 	if was_phase == "end_station":
 		# This is truly the end of the game
 		# We won't force close the game automatically; user must type 'bye'.
-		# So let's do nothing special here.
 		pass
 	else:
 		# After finishing "intro" or "black_box" narrative:
@@ -319,7 +315,6 @@ func _on_friction_damage(_message: String, _color: String) -> void:
 # ----------------------------------------------------------------------------
 func _on_drill_message(text: String, color: String) -> void:
 	if is_in_narrative:
-		# If drilling during narrative, just silently add items
 		return
 	add_to_terminal_output(text, color)
 	drilling_progress_line_index = -1
