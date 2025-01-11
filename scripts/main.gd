@@ -265,7 +265,7 @@ func end_narrative() -> void:
 				commands_blocked = true
 
 		# Show the normal console prompt
-		init_game_console()
+		handle_help_command()
 
 
 func init_game_console() -> void:
