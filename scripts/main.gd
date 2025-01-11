@@ -281,7 +281,7 @@ Commands:
   move/m [d|degree] <angle_or_clock> [speed%]
   stop/s
   speed/sp <value>
-  sonar <active|passive|directed|off> [angle]
+  sonar <active/a|passive/p|directed/d|off> [angle]
   drill <angle>
   inventory
   attack/a <angle_degrees>
@@ -542,7 +542,7 @@ func handle_help_command() -> void:
   move/m [d|degree] <angle_or_clock> [speed%]
   stop/s
   speed/sp <value>
-  sonar <active|passive|directed|off> [angle]
+  sonar <active/a|passive/p|directed/d|off> [angle]
   drill <angle>
   inventory
   attack/a <angle_degrees>
@@ -819,7 +819,7 @@ func handle_undock() -> void:
 		return
 	is_docked = false
 	commands_blocked = false
-	add_success("Undocking complete. You are free to move.\nHint: 'sonar active' to see environment.")
+	add_success("Undocking complete. You are free to move.\nHint: 'sonar active/a' to see environment.")
 
 func handle_dock() -> void:
 	var station_node := _find_nearest_station()
