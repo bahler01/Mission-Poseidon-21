@@ -126,7 +126,7 @@ Our research team is grateful for your courage and skill.
 You’ve proven yourself a valuable ally. HQ would be glad to see you take on further expeditions under the ice, 
 but for now, this concludes your current assignment.
 
-Until we meet again, safe travels. When you’re ready to finalize and return to the surface, please type 'bye'.
+Until we meet again, safe travels. When you’re ready to finalize and return to the surface, please type 'bye' .
 """
 ]
 
