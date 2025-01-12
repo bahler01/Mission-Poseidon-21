@@ -1,3 +1,25 @@
+# -------------------------------------------------
+#              SONAR SYSTEM CONTROLLER
+# -------------------------------------------------
+#  This script manages various sonar functionalities in a 2D game environment.
+#  It supports three sonar modes:
+#   • Active Sonar: Omni-directional pings to detect obstacles.
+#   • Passive Sonar: Continuous environment scanning to simulate "listening" for signals.
+#   • Directed Sonar: Focused sonar beams within a specified field-of-view.
+#
+#  Key functionalities include:
+#   • Emitting sonar pings based on selected mode.
+#   • Handling physics raycasts to detect collisions and measure object thickness.
+#   • Animating visual effects like expanding rings, directed arcs, and point glows.
+#   • Managing timers for each sonar mode to schedule pings.
+#   • Playing associated sounds for sonar pings and explosions.
+#   • Drawing sonar visuals including rings, arcs, borders, and ping points with tails and glows.
+#
+#  The script uses configurable parameters (exported variables) for fine-tuning
+#  the appearance, behavior, and performance of each sonar mode, including
+#  fade durations, brightness, glow effects, and tail rendering.
+# -------------------------------------------------
+
 extends Node2D
 
 # Number of segments used when drawing an ellipse with draw_polygon()
@@ -18,7 +40,7 @@ signal mode_changed(new_mode: String)
 @export var collision_thickness_threshold: float = 20.0
 
 # ---------------------------
-# Active Sonar - Main
+# Active Sonar - Main Settings
 # ---------------------------
 @export_category("Active Sonar - Main")
 @export var ping_distance: float = 160.0
@@ -28,7 +50,7 @@ signal mode_changed(new_mode: String)
 @export var rays_count_active: int = 144
 
 # ---------------------------
-# Active Sonar - Tail & Glow
+# Active Sonar - Tail & Glow Settings
 # ---------------------------
 @export var active_tail_enabled: bool = true
 @export var active_trail_steps: int = 5
@@ -57,9 +79,8 @@ signal mode_changed(new_mode: String)
 @export var active_tail_glow_life_duration: float = 0.7
 @export var active_tail_glow_size_shrink_duration: float = 0.7
 
-
 # ---------------------------
-# Directed Sonar - Main
+# Directed Sonar - Main Settings
 # ---------------------------
 @export_category("Directed Sonar - Main")
 @export var directed_angle_default: float = 90.0
@@ -74,7 +95,7 @@ signal mode_changed(new_mode: String)
 @export var directed_ellipse_size: Vector2 = Vector2(1.5, 0.6)
 
 # ---------------------------
-# Directed Sonar - Tail & Glow
+# Directed Sonar - Tail & Glow Settings
 # ---------------------------
 @export var directed_tail_enabled: bool = true
 @export var directed_trail_steps: int = 8
@@ -112,7 +133,7 @@ signal mode_changed(new_mode: String)
 @export var directed_side_line_thickness: float = 1.0
 
 # ---------------------------
-# Passive Sonar - Main
+# Passive Sonar - Main Settings
 # ---------------------------
 @export_category("Passive Sonar - Main")
 @export var passive_enabled: bool = true
@@ -124,7 +145,7 @@ signal mode_changed(new_mode: String)
 @export var rays_count_passive_reflection: int = 100
 
 # ---------------------------
-# Passive Sonar - Tail & Glow
+# Passive Sonar - Tail & Glow Settings
 # ---------------------------
 @export var passive_tail_enabled: bool = false
 @export var passive_trail_steps: int = 3
@@ -196,42 +217,42 @@ var directed_wave_angle_deg: float = 0.0
 
 
 func set_directed_update_time(new_time: float) -> void:
-	# Updates the wait_time of the directed sonar timer
+	# Updates the wait_time of the directed sonar timer to adjust its update frequency
 	directed_update_interval = new_time
 	directed_timer.wait_time = new_time
 
 
 func _ready() -> void:
-	# Initialize the physics space state (used for ray queries)
+	# Initialize physics space for collision queries and set up timers and audio players
 	space_state = get_world_2d().direct_space_state
 
-	# Add audio stream players to the scene
+	# Add audio stream players to the scene tree
 	add_child(ping_player_active)
 	add_child(ping_player_directed)
 	add_child(explosion_player)
 
-	# Timer setup for active sonar
+	# Timer setup for active sonar pings
 	ping_timer = Timer.new()
 	ping_timer.wait_time = ping_interval
 	ping_timer.one_shot = false
 	ping_timer.connect("timeout", Callable(self, "_on_active_ping_timeout"))
 	add_child(ping_timer)
 
-	# Timer setup for passive sonar
+	# Timer setup for passive sonar updates
 	passive_timer = Timer.new()
 	passive_timer.wait_time = passive_update_interval
 	passive_timer.one_shot = false
 	passive_timer.connect("timeout", Callable(self, "_on_passive_update_timeout"))
 	add_child(passive_timer)
 
-	# Timer setup for directed sonar
+	# Timer setup for directed sonar pings
 	directed_timer = Timer.new()
 	directed_timer.wait_time = directed_update_interval
 	directed_timer.one_shot = false
 	directed_timer.connect("timeout", Callable(self, "_on_directed_ping_timeout"))
 	add_child(directed_timer)
 
-	# If sonar is disabled from the start, stop the timers and disable processing
+	# If sonar system is disabled, stop all timers and processing
 	if not is_enabled:
 		ping_timer.stop()
 		passive_timer.stop()
@@ -239,17 +260,17 @@ func _ready() -> void:
 		set_process(false)
 		return
 
-	# Validate the starting sonar mode; if it is invalid, switch to "off"
+	# Validate and set initial sonar mode based on export variable
 	var lower_mode = start_sonar_mode.to_lower()
 	if not ["active", "passive", "directed", "off"].has(lower_mode):
 		lower_mode = "off"
 	
-	# Assign the valid mode and initialize timers based on that mode
+	# Apply the validated sonar mode and initialize corresponding timers
 	set_sonar_mode(lower_mode)
 
 
 func set_sonar_mode(mode: String) -> void:
-	# Changes the sonar_mode if a different one is requested, then updates timers
+	# Changes the sonar mode if a different one is requested, then updates timers
 	if sonar_mode != mode:
 		sonar_mode = mode
 		emit_signal("mode_changed", sonar_mode)
@@ -257,7 +278,7 @@ func set_sonar_mode(mode: String) -> void:
 
 
 func _update_sonar_timers() -> void:
-	# Handles starting or stopping relevant timers depending on sonar mode and enable state
+	# Start or stop timers based on current sonar mode and whether the system is enabled
 	if not is_enabled:
 		ping_timer.stop()
 		passive_timer.stop()
@@ -270,7 +291,7 @@ func _update_sonar_timers() -> void:
 			passive_timer.stop()
 			directed_timer.stop()
 			ping_timer.start()
-			# Immediately trigger an active ping
+			# Immediately trigger an active ping to start the cycle
 			_on_active_ping_timeout()
 		"passive":
 			ping_timer.stop()
@@ -285,14 +306,14 @@ func _update_sonar_timers() -> void:
 			directed_timer.start()
 			_on_directed_ping_timeout()
 		_:
-			# For "off" or any other unexpected mode, turn off all timers
+			# For "off" mode or any unexpected mode, stop all timers
 			ping_timer.stop()
 			passive_timer.stop()
 			directed_timer.stop()
 
 
 # ----------------------------------------------------------------------
-#   ACTIVE (OMNI) SONAR
+#   ACTIVE (OMNI) SONAR FUNCTIONS
 # ----------------------------------------------------------------------
 func _on_active_ping_timeout() -> void:
 	# Called by ping_timer; triggers an omni-directional active sonar ping if in correct mode
@@ -308,12 +329,14 @@ func emit_ping_omni() -> void:
 	if not player:
 		return
 
+	# Reset ring properties for new active ping animation
 	ring_radius = 0.0
 	ring_active = true
 	var origin = player.global_position
 	var angle_step = 360.0 / float(rays_count_active)
 	var new_points: Array[PingPoint] = []
 
+	# Cast rays in a full circle around the player
 	for i in range(rays_count_active):
 		var angle_degrees = i * angle_step
 		var angle_radians = deg_to_rad(angle_degrees)
@@ -322,6 +345,7 @@ func emit_ping_omni() -> void:
 		var current_origin = origin + direction * 1.0
 		var remaining_distance = ping_distance
 
+		# Continue raycasting until maximum distance reached or obstacle stops the ray
 		while remaining_distance > 0:
 			var target = current_origin + direction * remaining_distance
 			var query = PhysicsRayQueryParameters2D.new()
@@ -333,6 +357,7 @@ func emit_ping_omni() -> void:
 				var hit_pos = result.position
 				var dist = origin.distance_to(hit_pos)
 
+				# Ensure points are not too close to each other
 				var can_add = true
 				for existing_point in new_points:
 					if existing_point.position.distance_to(hit_pos) < min_distance_between_points:
@@ -347,6 +372,7 @@ func emit_ping_omni() -> void:
 					if collider and collider.has_method("get_sonar_ping_settings"):
 						ping_settings_dict = collider.get_sonar_ping_settings()
 
+					# Create a new PingPoint for the detected collision
 					var p = PingPoint.new(
 						hit_pos,
 						dist,
@@ -358,6 +384,7 @@ func emit_ping_omni() -> void:
 					)
 					p.mode = "active"
 					p.visible = false
+					# Measure the thickness of the collided object
 					p.collision_thickness = measure_collision_thickness(hit_pos, direction, collider)
 
 					new_points.append(p)
@@ -389,10 +416,11 @@ func emit_ping_omni() -> void:
 							back_p.ignore_tail = true
 							new_points.append(back_p)
 
-				# If collider is not in the "Transperent" group, break out of the loop
+				# If collider is not in the "Transperent" group, stop further ray propagation
 				if not (result.collider and result.collider.is_in_group("Transperent")):
 					break
 
+				# Slightly move origin forward to avoid immediate re-collision with the same surface
 				var penetration_offset = 0.1
 				current_origin = hit_pos + direction * penetration_offset
 				if origin.distance_to(current_origin) < ping_distance:
@@ -402,13 +430,14 @@ func emit_ping_omni() -> void:
 			else:
 				break
 
+	# Add new points to the global list and request redraw and processing
 	hit_points += new_points
 	set_process(true)
 	queue_redraw()
 
 
 # ----------------------------------------------------------------------
-#   PASSIVE (OMNI) SONAR
+#   PASSIVE (OMNI) SONAR FUNCTIONS
 # ----------------------------------------------------------------------
 func _on_passive_update_timeout() -> void:
 	# Called periodically by passive_timer; triggers passive sonar detection if enabled
@@ -418,7 +447,7 @@ func _on_passive_update_timeout() -> void:
 
 
 func emit_passive_noise(radius: float) -> void:
-	# Rays to detect collisions around the player for passive sonar
+	# Emits passive sonar rays around the player to detect nearby objects
 	var origin = player.global_position
 	var new_points: Array[PingPoint] = []
 	var angle_step = 360.0 / float(rays_count_passive_reflection)
@@ -441,6 +470,7 @@ func emit_passive_noise(radius: float) -> void:
 				var collider = result.collider
 				var group_color = get_group_color(collider)
 
+				# Ensure new points are not too close to each other
 				var can_add = true
 				for existing_point in new_points:
 					if existing_point.position.distance_to(result.position) < min_distance_between_points:
@@ -452,6 +482,7 @@ func emit_passive_noise(radius: float) -> void:
 					if collider and collider.has_method("get_sonar_ping_settings"):
 						ping_settings_dict = collider.get_sonar_ping_settings()
 
+					# Create a new PingPoint for passive detection
 					var p = PingPoint.new(
 						result.position,
 						dist,
@@ -464,18 +495,20 @@ func emit_passive_noise(radius: float) -> void:
 					p.mode = "passive"
 					p.visible = false
 					p.collision_thickness = measure_collision_thickness(result.position, dir, collider)
+					# For thin objects, skip rendering tail to avoid clutter
 					if p.collision_thickness < collision_thickness_threshold:
 						p.ignore_tail = true
 
 					new_points.append(p)
 
+	# Add new passive points and request redraw
 	hit_points += new_points
 	queue_redraw()
 	set_process(true)
 
 
 # ----------------------------------------------------------------------
-#   PASSIVE NOISE FROM AN EXPLOSION
+#   PASSIVE NOISE FROM AN TORPEDO EXPLOSION
 # ----------------------------------------------------------------------
 func add_passive_explosion_noise(explosion_position: Vector2, explosion_radius: float) -> void:
 	# Generates passive sonar noise after an explosion, creating PingPoints for collisions
@@ -484,7 +517,7 @@ func add_passive_explosion_noise(explosion_position: Vector2, explosion_radius: 
 	if not passive_enabled:
 		return
 
-	# Play explosion sound if available
+	# Play explosion sound effect if available
 	if explosion_sound and explosion_player:
 		explosion_player.stream = explosion_sound
 		explosion_player.play()
@@ -493,6 +526,7 @@ func add_passive_explosion_noise(explosion_position: Vector2, explosion_radius: 
 	var origin = explosion_position
 	var angle_step = 360.0 / float(rays_count_passive_reflection)
 
+	# Emit rays from the explosion center to simulate shockwave reflections
 	for i in range(rays_count_passive_reflection):
 		var angle_deg = i * angle_step
 		var angle_rad = deg_to_rad(angle_deg)
@@ -521,6 +555,7 @@ func add_passive_explosion_noise(explosion_position: Vector2, explosion_radius: 
 					if collider and collider.has_method("get_sonar_ping_settings"):
 						ping_settings_dict = collider.get_sonar_ping_settings()
 
+					# Create a PingPoint based on explosion detection
 					var p = PingPoint.new(
 						result.position,
 						dist,
@@ -538,16 +573,17 @@ func add_passive_explosion_noise(explosion_position: Vector2, explosion_radius: 
 
 					new_points.append(p)
 
+	# Add new explosion-induced points and request redraw
 	hit_points += new_points
 	queue_redraw()
 	set_process(true)
 
 
 # ----------------------------------------------------------------------
-#   DIRECTED SONAR
+#   DIRECTED SONAR FUNCTIONS
 # ----------------------------------------------------------------------
 func _on_directed_ping_timeout() -> void:
-	# Called by directed_timer; triggers a directed sonar ping if in correct mode
+	# Called by directed_timer; triggers a directed sonar ping if conditions are met
 	if is_enabled and sonar_mode == "directed":
 		if sonar_ping_sound_directed:
 			ping_player_directed.stream = sonar_ping_sound_directed
@@ -556,7 +592,7 @@ func _on_directed_ping_timeout() -> void:
 
 
 func emit_ping_directed() -> void:
-	# Performs a raycast within a certain FOV to simulate a directed sonar
+	# Performs a raycast within a certain FOV to simulate a directed sonar beam
 	if not player:
 		return
 
@@ -569,6 +605,7 @@ func emit_ping_directed() -> void:
 
 	var new_points: Array[PingPoint] = []
 
+	# Cast rays within the defined field-of-view
 	for i in range(local_rays_count):
 		var offset_deg = -half_fov + i * step
 		var current_deg = angle_deg + offset_deg
@@ -578,6 +615,7 @@ func emit_ping_directed() -> void:
 		var current_origin = origin + direction * 1.0
 		var remaining_distance = directed_distance
 
+		# Continue casting ray until distance limit or collision with non-transparent object
 		while remaining_distance > 0:
 			var target = current_origin + direction * remaining_distance
 			var query = PhysicsRayQueryParameters2D.new()
@@ -589,6 +627,7 @@ func emit_ping_directed() -> void:
 				var hit_pos = result.position
 				var dist = origin.distance_to(hit_pos)
 
+				# Ensure points in directed mode are not placed too closely together
 				var can_add = true
 				for existing_point in new_points:
 					if existing_point.position.distance_to(hit_pos) < min_distance_between_points_directed:
@@ -603,6 +642,7 @@ func emit_ping_directed() -> void:
 					if collider and collider.has_method("get_sonar_ping_settings"):
 						ping_settings_dict = collider.get_sonar_ping_settings()
 
+					# Create a new PingPoint for the directed sonar detection
 					var p = PingPoint.new(
 						hit_pos,
 						dist,
@@ -617,7 +657,7 @@ func emit_ping_directed() -> void:
 					p.collision_thickness = measure_collision_thickness(hit_pos, direction, collider)
 					new_points.append(p)
 
-					# If the collision is thin enough, place a point behind it
+					# If the collision is thin enough, place a point behind it to capture trailing edge
 					if p.collision_thickness < collision_thickness_threshold:
 						var back_pos = hit_pos + direction.normalized() * p.collision_thickness
 						var back_dist = origin.distance_to(back_pos)
@@ -644,10 +684,11 @@ func emit_ping_directed() -> void:
 							back_p.ignore_tail = true
 							new_points.append(back_p)
 
-				# If collider is not in the "Transperent" group, end this ray
+				# Stop the ray if it hits a non-transparent object
 				if not (result.collider and result.collider.is_in_group("Transperent")):
 					break
 
+				# Move origin slightly forward to avoid immediate repeated collisions
 				var penetration_offset = 0.1
 				current_origin = hit_pos + direction * penetration_offset
 
@@ -658,8 +699,10 @@ func emit_ping_directed() -> void:
 			else:
 				break
 
+	# Add newly detected points from the directed sonar to global list
 	hit_points += new_points
 
+	# Reset and activate the directed sonar wave animation
 	directed_wave_radius = 0.0
 	directed_wave_active = true
 	directed_wave_angle_deg = angle_deg
@@ -684,26 +727,27 @@ func get_group_color(collider: Object) -> Color:
 
 
 func _process(delta: float) -> void:
-	# Animate the expanding ring for the active sonar
+	# Main update loop handling animations, visibility, and fading of PingPoints
+	# Animate the expanding ring for active sonar mode
 	if ring_active:
 		ring_radius += ring_expansion_speed * delta
 		if ring_radius >= ping_distance:
 			ring_radius = ping_distance
 			ring_active = false
 
-	# Animate the expanding arc for the directed sonar
+	# Animate the expanding arc for directed sonar mode
 	if directed_wave_active:
 		directed_wave_radius += directed_ring_expansion_speed * delta
 		if directed_wave_radius >= directed_distance:
 			directed_wave_radius = directed_distance
 			directed_wave_active = false
 
-	# Update each PingPoint's timers and visibility
+	# Update timers and visibility for each PingPoint based on its mode
 	for point in hit_points:
 		match point.mode:
 			"active":
 				if not point.visible:
-					# Make the point visible once the ring passes its distance
+					# Make the point visible once the ring reaches its distance
 					if ring_active:
 						if ring_radius >= point.distance:
 							point.visible = true
@@ -722,7 +766,7 @@ func _process(delta: float) -> void:
 
 			"passive":
 				if not point.visible:
-					# Passive points become visible immediately
+					# Passive points become visible immediately without waiting for a ring
 					point.visible = true
 					point.brightness_time_left = passive_brightness_fade_duration
 					point.visible_time_elapsed = 0.0
@@ -733,7 +777,7 @@ func _process(delta: float) -> void:
 
 			"directed":
 				if not point.visible:
-					# Make the point visible once the directed wave passes its distance
+					# Make the point visible once the directed wave reaches its distance
 					if directed_wave_active:
 						if directed_wave_radius >= point.distance:
 							point.visible = true
@@ -751,17 +795,18 @@ func _process(delta: float) -> void:
 					point.visible_time_elapsed += delta
 
 			_:
+				# Default case: update points normally
 				point.visible = true
 				point.time_left -= delta
 				point.brightness_time_left = max(point.brightness_time_left - delta, 0.0)
 				point.visible_time_elapsed += delta
 
-	# Remove points that have fully faded out
+	# Remove PingPoints that have fully faded out
 	hit_points = hit_points.filter(func(p: PingPoint):
 		return p.time_left > 0
 	)
 
-	# If the sonar is disabled and no points remain, disable _process
+	# If sonar is disabled and no points remain, stop processing
 	if not is_enabled and hit_points.is_empty():
 		set_process(false)
 
@@ -769,33 +814,33 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-	# Draws the active sonar ring, directed sonar arc, FOV borders, and all current PingPoints
+	# Draws the sonar visuals including rings, arcs, directional borders, and all current PingPoints
 	var origin = to_local(player.global_position)
 
-	# Active sonar ring
+	# Draw active sonar expanding ring if active
 	if ring_active:
 		draw_ring(origin)
 
-	# Directed sonar arc
+	# Draw directed sonar expanding arc if active
 	if directed_wave_active:
 		draw_directed_arc(origin)
 
-	# Draw directional sonar boundaries if in "directed" mode
+	# If in directed mode, draw the field-of-view boundaries
 	if sonar_mode == "directed":
 		draw_directed_sonar_borders(origin)
 
-	# Draw all ping points
+	# Draw all visible ping points
 	draw_points(origin)
 
 
 func draw_ring(origin: Vector2) -> void:
-	# Draws the ring that represents the expanding wave of the active sonar
+	# Draws the expanding ring that represents the active sonar wave
 	var ring_color = Color(1.0, 1.0, 1.0, 0.5)
 	draw_arc(origin, ring_radius, 0, TAU, 64, ring_color, 1)
 
 
 func draw_directed_arc(origin: Vector2) -> void:
-	# Draws the arc that represents the directed sonar wave
+	# Draws the expanding arc for the directed sonar wave based on current FOV and radius
 	var fov_rad = deg_to_rad(directed_fov)
 	var half_fov = fov_rad * 0.5
 	var center_angle_rad = deg_to_rad(directed_wave_angle_deg)
@@ -808,14 +853,14 @@ func draw_directed_arc(origin: Vector2) -> void:
 
 
 func draw_directed_sonar_borders(origin: Vector2) -> void:
-	# Draws the FOV borders and center line for the directed sonar
+	# Draws the field-of-view borders and center line for directed sonar to guide the player
 	var dist = directed_distance
 	var center_angle_rad = deg_to_rad(directed_wave_angle_deg)
 	var half_fov_rad = deg_to_rad(directed_fov * 0.5)
 	var angle_left = center_angle_rad - half_fov_rad
 	var angle_right = center_angle_rad + half_fov_rad
 
-	# Center line
+	# Draw center line within the FOV
 	draw_line(
 		origin,
 		origin + Vector2(cos(center_angle_rad), sin(center_angle_rad)) * dist,
@@ -823,7 +868,7 @@ func draw_directed_sonar_borders(origin: Vector2) -> void:
 		directed_center_line_thickness
 	)
 
-	# Left boundary
+	# Draw left boundary of FOV
 	draw_line(
 		origin,
 		origin + Vector2(cos(angle_left), sin(angle_left)) * dist,
@@ -831,7 +876,7 @@ func draw_directed_sonar_borders(origin: Vector2) -> void:
 		directed_side_line_thickness
 	)
 
-	# Right boundary
+	# Draw right boundary of FOV
 	draw_line(
 		origin,
 		origin + Vector2(cos(angle_right), sin(angle_right)) * dist,
@@ -841,18 +886,19 @@ func draw_directed_sonar_borders(origin: Vector2) -> void:
 
 
 func draw_points(origin: Vector2) -> void:
-	# Iterates through all PingPoints and draws each visible point
+	# Iterates through all PingPoints and draws each visible point on the screen
 	for point in hit_points:
 		if point.visible:
 			draw_point(point, origin)
 
 
 func draw_point(point: PingPoint, _origin: Vector2) -> void:
-	# Draws the ellipse for the ping point, its glow, and optionally its tail
+	# Draws individual PingPoint with ellipse, glow, and optional tail based on sonar mode
 	var alpha = 0.0
 	var t = 0.0
 	var ellipse_size = Vector2(3, 1.2)
 
+	# Determine drawing parameters based on the mode of the PingPoint
 	match point.mode:
 		"active":
 			alpha = clamp(point.time_left / point.created_fade_duration, 0, 1)
@@ -871,19 +917,23 @@ func draw_point(point: PingPoint, _origin: Vector2) -> void:
 			t = point.brightness_time_left / point.created_brightness_duration
 			ellipse_size = Vector2(3, 1.2)
 
+	# Retrieve mode-specific settings for customization
 	var mode_settings: Dictionary = {}
 	if point.mode in point.ping_settings:
 		mode_settings = point.ping_settings[point.mode]
 	else:
 		mode_settings = point.ping_settings
 
+	# Override ellipse size if specified in settings
 	if "ellipse_size" in mode_settings:
 		ellipse_size = mode_settings["ellipse_size"]
 
+	# Determine point color with potential override from settings
 	var point_color = point.color
 	if "ellipse_color" in mode_settings:
 		point_color = mode_settings["ellipse_color"]
 
+	# Apply fading effect to point color transparency
 	point_color.a = alpha
 
 	var local_pos = to_local(point.position)
@@ -891,13 +941,13 @@ func draw_point(point: PingPoint, _origin: Vector2) -> void:
 	var angle = direction.angle() + PI / 2
 	var vte = point.visible_time_elapsed
 
-	# Glow effect
+	# Draw glow effect around the point if applicable
 	draw_point_glow(point, local_pos, ellipse_size, angle, alpha, mode_settings)
 
-	# Draw the point's ellipse
+	# Draw the main ellipse representing the ping point
 	draw_polygon_ellipse(local_pos, ellipse_size, angle, point_color)
 
-	# Draw tail if needed
+	# Draw the trailing effect behind the point if enabled
 	draw_point_tail(point, local_pos, direction, angle, alpha, t, ellipse_size, vte, mode_settings)
 
 
@@ -1005,7 +1055,7 @@ func draw_point_tail(
 
 	match point.mode:
 		"active":
-			# Tail logic for active sonar
+			# Tail logic for active sonar mode
 			if not active_tail_enabled:
 				return
 			var scale = 0.2
@@ -1020,6 +1070,7 @@ func draw_point_tail(
 			var tail_glow_enabled = active_tail_glow_enabled
 			var tail_brightness_factor = active_tail_brightness_factor
 
+			# Override defaults with mode-specific settings if provided
 			if "tail_step_distance" in mode_settings:
 				trail_step_distance = mode_settings["tail_step_distance"]
 			if "tail_size_factor" in mode_settings:
@@ -1038,6 +1089,7 @@ func draw_point_tail(
 				tail_brightness_factor = mode_settings["tail_brightness_factor"]
 
 			var tail_alpha = 0.0
+			# Determine alpha value for tail based on elapsed visible time
 			if vte <= tail_life_duration:
 				tail_alpha = trail_alpha_factor * alpha
 			else:
@@ -1052,6 +1104,7 @@ func draw_point_tail(
 				tail_size_progress = min(vte / tail_size_shrink_duration, 1.0)
 
 			if tail_alpha > 0:
+				# Draw multiple tail segments behind the point
 				for i in range(1, final_steps + 1):
 					var trail_pos = local_pos + direction * (i * trail_step_distance)
 					var trail_sub_alpha = tail_alpha * (1.0 - float(i) / float(final_steps + 1))
@@ -1070,7 +1123,7 @@ func draw_point_tail(
 					draw_polygon_ellipse(trail_pos, current_trail_size, angle, trail_color)
 
 		"passive":
-			# Tail logic for passive sonar
+			# Tail logic for passive sonar mode (similar to active but with passive settings)
 			if not passive_tail_enabled:
 				return
 			var scale_p = 0.2
@@ -1135,7 +1188,7 @@ func draw_point_tail(
 					draw_polygon_ellipse(trail_pos_p, current_trail_size_p, angle, trail_color_p)
 
 		"directed":
-			# Tail logic for directed sonar
+			# Tail logic for directed sonar mode
 			if not directed_tail_enabled:
 				return
 			var final_steps_d = compute_directed_tail_steps(thickness, ellipse_size)
@@ -1225,7 +1278,7 @@ func draw_tail_glow(
 	angle: float,
 	mode_settings: Dictionary
 ) -> void:
-	# Draws an additional glow ellipse behind each tail segment, depending on mode
+	# Draws an additional glow ellipse behind each tail segment, depending on the sonar mode and settings
 	match mode:
 		"active":
 			if not active_tail_glow_enabled:
@@ -1274,7 +1327,7 @@ func draw_tail_glow(
 
 
 func draw_polygon_ellipse(pos: Vector2, size: Vector2, rot: float, color: Color) -> void:
-	# Draws an ellipse as a polygon using ELLIPSE_SEGMENTS
+	# Draws an ellipse as a polygon based on given position, size, rotation, and color
 	var points = []
 	for i in range(ELLIPSE_SEGMENTS):
 		var a = i * 2.0 * PI / float(ELLIPSE_SEGMENTS)
@@ -1301,7 +1354,7 @@ func get_directed_sonar_radius() -> float:
 
 
 func measure_collision_thickness(intersection_pos: Vector2, direction: Vector2, collider: Object) -> float:
-	# Attempts to measure the thickness of the collided object by continuing a small offset in the direction
+	# Attempts to measure the thickness of the collided object by moving forward in the ray direction
 	if collider == null:
 		return 1.0
 
@@ -1328,6 +1381,7 @@ func measure_collision_thickness(intersection_pos: Vector2, direction: Vector2, 
 				inside_same_collider = true
 				break
 
+		# Stop measuring thickness when the ray exits the collider
 		if not inside_same_collider:
 			break
 

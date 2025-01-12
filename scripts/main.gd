@@ -16,8 +16,8 @@ extends Node2D
 # -------------------------------------------------
 
 # ------------------------- SETTINGS -------------------------
-var skip_narrative := false          # Whether to skip narrative dialogs at start FOR DEV
-var skip_undock_requirement := false # Whether we require 'undock' before moving FOR DEV
+var skip_narrative := false          # Whether to skip narrative dialogs at start FOR FAST PLAYTEST
+var skip_undock_requirement := false # Whether we require 'undock' before moving FOR FAST PLAYTEST
 
 @onready var command_input: LineEdit = $Player/Terminal/Rows/PanelContainer2/HBoxContainer/CommandInput
 @onready var player = $Player
@@ -91,9 +91,7 @@ Before you dive deeper to Target Posion coordinates(look at the upper-left corne
 ]
 
 # 2) Black Box Found Narrative
-#   => We'll mention the Dead Pocket (1200,1000)
-#      and that the target is changed to (945,-200).
-#      Also mention "mission" command.
+
 var black_box_messages: Array = [
 """--- Transmission from Headquarters ---
 
@@ -249,23 +247,26 @@ func end_narrative() -> void:
 		# This is truly the end of the game
 		# We won't force close the game automatically; user must type 'bye'.
 		pass
+	elif was_phase == "black_box":
+		# After finishing "black_box" narrative:
+		# Unlock commands, sub is considered undocked
+		is_docked = false
+		commands_blocked = false
+		# Instead of normal console prompt, call handle_help_command
+		handle_help_command()
 	else:
-		# After finishing "intro" or "black_box" narrative:
-		if was_phase == "black_box":
-			# Unlock commands, sub is considered undocked
+		# For phases other than "end_station" and "black_box":
+		# If skip_undock_requirement is true, sub starts undocked
+		if skip_undock_requirement:
 			is_docked = false
 			commands_blocked = false
 		else:
-			# If skip_undock_requirement is true, sub starts undocked
-			if skip_undock_requirement:
-				is_docked = false
-				commands_blocked = false
-			else:
-				is_docked = true
-				commands_blocked = true
+			is_docked = true
+			commands_blocked = true
 
 		# Show the normal console prompt
-		handle_help_command()
+		init_game_console()
+
 
 
 func init_game_console() -> void:
@@ -374,6 +375,7 @@ func _on_drill_progress_update(progress_percentage: float) -> void:
 #                    TERMINAL INPUT
 # ----------------------------------------------------------------------------
 func _on_CommandInput_gui_input(event: InputEvent) -> void:
+	# Arrow up-down terminal history
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_UP:
 			if command_history.is_empty():
@@ -539,7 +541,7 @@ func handle_help_command() -> void:
   speed/sp <value>
   sonar <active/a|passive/p|directed/d|off> [angle]
   drill <angle>
-  inventory
+  inventory/inv
   attack/a <angle_degrees>
   dock
   undock

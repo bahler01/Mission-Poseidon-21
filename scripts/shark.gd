@@ -26,7 +26,7 @@ extends CharacterBody2D
 @export var time_to_disappear_after_ceiling: float = 8.0  # Time after contacting the ceiling to disappear
 
 # -------------------- INTERNAL VARIABLES --------------------
-var current_hp: int                          # Current health points
+var current_hp: int                          
 var current_state: String = "IDLE"           # Current state of the shark's state machine
 
 var vanish_timer: float = 0.0                # Timer for vanishing after death
@@ -37,8 +37,8 @@ var path_follow: PathFollow2D                # Reference to the PathFollow2D nod
 var direction_forward: bool = true           # Direction along the path (forward or backward)
 
 # References to other nodes
-@onready var player: CharacterBody2D = $"../../../Player"     # Reference to the player node
-@onready var sonar: Node2D = $"../../../Player/Sonar"         # Reference to the sonar node
+@onready var player: CharacterBody2D = $"../../../Player"     
+@onready var sonar: Node2D = $"../../../Player/Sonar"        
 
 # Timers for various state transitions and effects
 var _bite_recovery_timer: float = 0.0        # Timer for post-bite slowdown
@@ -74,8 +74,7 @@ func _physics_process(delta: float) -> void:
 		"DEAD":
 			_state_dead(delta)
 
-	# For CharacterBody2D in Godot 4, simply call move_and_slide()
-	# It will use the current velocity stored in self.velocity
+
 	if current_state != "DEAD":
 		move_and_slide()
 
