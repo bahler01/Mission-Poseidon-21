@@ -869,7 +869,7 @@ scale = Vector2(0.674377, 0.674377)
 polygon = PackedVector2Array(-2, -6, -3, -7, -4, -7, -2, -4, -4, -4, -5, -6, -7, -6, -6, -4, -7, -4, -6, -3, -7, -2, -6, 0, -8, -1, -9, 0, -7, 1, -8, 2, -7, 2, -8, 3, -8, 4, -6, 4, -4, 3, -5, 5, -4, 6, -4, 5, -3, 4, -2, 5, -1, 4, -1, 5, 0, 5, -1, 6, 0, 7, 1, 5, 1, 7, 2, 5, 2, 7, 3, 7, 3, 5, 4, 6, 5, 6, 5, 5, 7, 5, 6, 4, 6, 3, 9, 4, 10, 3, 8, 2, 10, 2, 10, 1, 10, 0, 9, 0, 10, -1, 9, -2, 9, -3, 9, -4, 9, -5, 8, -4, 8, -3, 7, -3, 6, -4, 6, -6, 6, -7, 5, -6, 4, -6, 4, -5, 3.12554, -5.58298, 3, -7, 3, -8, 0, -8, -2, -8)
 
 [node name="CrashedSubmarine" type="Node2D" parent="."]
-position = Vector2(85, 188)
+position = Vector2(453, 648)
 
 [node name="Submarine" type="StaticBody2D" parent="CrashedSubmarine" groups=["Environment", "RostedMetal"]]
 position = Vector2(0, 1)
@@ -2071,7 +2071,7 @@ rotation = -2.45804
 polygon = PackedVector2Array(0, -30, -6, -25, -6, -12, -15, -24, -20, -21, -17, -3, -28, 35, 1.32922, 133.053, 20.7125, 117.265, 48.5883, 143.569, 56.4847, 135.847, 41.7588, 113.019, 65.9325, 126.862, 73.8297, 119.139, 69.0084, 103.72, 71.5656, 92.6087, 80.2074, 98.467, 85.5782, 87.6432, 79.5499, 77.0766, 80.4747, 73.5784, 93.5315, 86.3242, 96.0012, 83.0226, 82.0508, 67.6167, 83.0262, 63.9268, 103.323, 80.9277, 105.393, 67.6342, 96.6947, 55.3727, 104.648, 54.0532, 114.897, 65.0516, 124.601, 67.465, 138.383, 71.7166, 133.274, 59.1111, 154.921, 69.8529, 134.743, 30.8289, 146.085, 24.1693, 121, 5, 130, -17, 133, -28, 130, -33, 123.898, -29.9857, 120, -25, 110.662, -25.6515, 110.605, -32.0544, 100.901, -34.4678, 94.4977, -34.4118, 89.0139, -36.3938, 85.7124, -38.8636, 77.7588, -37.5441, 77.9591, -32.5481, 75.6331, -30.6534, 74, -37, 68, -37, 64.8657, -29.6214, 59, -32, 56, -41, 51, -40, 48, -21, 37, -37, 31, -35, 29.2314, -14.7825, 24, -20, 19, -36, 13, -30, 13.5245, -7.14734)
 
 [node name="LevelCompleteOre" type="Node2D" parent="."]
-position = Vector2(94, -20)
+position = Vector2(-212, -129)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="LevelCompleteOre" groups=["MissionItem"]]
 position = Vector2(599, 284)
@@ -2090,6 +2090,7 @@ ore_type = "Rhodium"
 drill_time = 6.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium"]
+position = Vector2(0, -8)
 polygon = PackedVector2Array(-1, -9, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
 
 [node name="Rhodium2" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
@@ -2099,7 +2100,7 @@ ore_type = "Rhodium"
 drill_time = 6.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium2"]
-position = Vector2(1, 2)
+position = Vector2(-5, -9)
 polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
 
 [node name="Rhodium8" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
@@ -2142,7 +2143,7 @@ ore_type = "Rhodium"
 drill_time = 6.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium3"]
-position = Vector2(1, 2)
+position = Vector2(-8, -8)
 polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
 
 [node name="Rhodium4" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
@@ -2152,7 +2153,7 @@ ore_type = "Rhodium"
 drill_time = 6.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium4"]
-position = Vector2(1, 2)
+position = Vector2(-6, -9)
 polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
 
 [node name="Rhodium5" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
@@ -2162,7 +2163,7 @@ ore_type = "Rhodium"
 drill_time = 6.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RhodiumGroup/Rhodium5"]
-position = Vector2(1, 2)
+position = Vector2(-14, 2)
 polygon = PackedVector2Array(-1, -9, -5, -10, -7, -7, -7, -4, -4, 5, 3, 8, 9, 7, 7, -1, 7, -3, 3, -7, 0, -9)
 
 [node name="Rhodium6" type="StaticBody2D" parent="RhodiumGroup" groups=["Environment", "RhodiumGroup"]]
@@ -2218,7 +2219,7 @@ yield_amount = 2
 drill_time = 14.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D2"]
-position = Vector2(3, 0)
+position = Vector2(-3, 0)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
@@ -2229,11 +2230,11 @@ yield_amount = 2
 drill_time = 14.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D4"]
-position = Vector2(3, 0)
+position = Vector2(7, 3)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D4"]
-position = Vector2(116, 111)
+position = Vector2(109, 111)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
@@ -2243,7 +2244,7 @@ ore_type = "Platinum"
 drill_time = 7.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D5"]
-position = Vector2(3, 0)
+position = Vector2(6, 1)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
@@ -2254,7 +2255,7 @@ yield_amount = 2
 drill_time = 14.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D6"]
-position = Vector2(3, 0)
+position = Vector2(6, -3)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
@@ -2264,7 +2265,7 @@ ore_type = "Platinum"
 drill_time = 7.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D7"]
-position = Vector2(3, 0)
+position = Vector2(7, -3)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
@@ -2275,7 +2276,7 @@ yield_amount = 3
 drill_time = 20.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D8"]
-position = Vector2(3, 0)
+position = Vector2(6, -5)
 polygon = PackedVector2Array(-5, -5, -12, -2, -11, 3, -9, 12, 3, 11, 6, -3)
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
@@ -2285,7 +2286,7 @@ ore_type = "Platinum"
 drill_time = 7.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D9"]
-position = Vector2(3, 0)
+position = Vector2(7, -7)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
@@ -2296,7 +2297,7 @@ yield_amount = 2
 drill_time = 14.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlatinumGroup/StaticBody2D3"]
-position = Vector2(3, 0)
+position = Vector2(2, 5)
 polygon = PackedVector2Array(-4, -3, -9, -1, -11, 3, -8, 7, 0, 7, 6, -3)
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="PlatinumGroup" groups=["Environment", "PlatinumGroup"]]
