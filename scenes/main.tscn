@@ -388,7 +388,7 @@ is_start_station = true
 
 [node name="StationEnd" parent="." instance=ExtResource("19_g2g8f")]
 z_index = 2
-position = Vector2(943, -203)
+position = Vector2(294, 132)
 is_end_station = true
 
 [node name="Zeichenfläche1Sd" type="Sprite2D" parent="."]
